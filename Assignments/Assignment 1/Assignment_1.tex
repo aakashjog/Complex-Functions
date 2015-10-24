@@ -1,0 +1,344 @@
+\documentclass[fleqn, a4paper, 11pt, oneside]{amsart}
+%\usepackage[top = 2cm, bottom = 1cm, left = 1cm, right = 1cm]{geometry}
+\usepackage{exsheets, tasks}
+\usepackage{amsmath, amssymb, amsthm} %standard AMS packages
+\usepackage{marginnote} %marginnotes
+\usepackage{gensymb} %miscellaneous symbols
+\usepackage{commath} %differential symbols
+\usepackage{xcolor} %colours
+\usepackage{cancel} %cancelling terms
+\usepackage[free-standing-units, space-before-unit]{siunitx} %formatting units
+\usepackage{tikz, pgfplots} %diagrams
+\usetikzlibrary{calc, hobby, patterns, intersections, decorations.markings}
+\usepackage{graphicx} %inserting graphics
+\usepackage{hyperref} %hyperlinks
+\usepackage{datetime} %date and time
+\usepackage{ulem} %underline for \emph{}
+\usepackage{xfrac} %inline fractions
+\usepackage{enumerate,enumitem} %numbered lists
+\usepackage{float} %inserting floats
+\usepackage{circuitikz}[american voltages, american currents] %circuit diagrams
+
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}} %adds numbers to specific equations in non-numbered list of equations
+
+\newcommand{\AxisRotator}[1][rotate=0]{
+	\tikz [x=0.25cm,y=0.60cm,line width=.2ex,-stealth,#1] \draw (0,0) arc (-150:150:1 and 1);%
+} %rotation symbols on axes
+
+\theoremstyle{definition}
+\newtheorem{example}{Example}
+\newtheorem{definition}{Definition}
+
+\theoremstyle{theorem}
+\newtheorem{theorem}{Theorem}
+
+\newcommand{\curl}{\mathrm{curl\,}}
+
+\makeatletter
+\@addtoreset{section}{part} %resets section numbers in new part
+\makeatother
+
+\renewcommand{\thesubsection}{(\arabic{subsection})}
+\renewcommand{\thesection}{(\arabic{section})}
+
+%section headings on left
+\makeatletter
+\def\specialsection{\@startsection{section}{1}%
+	\z@{\linespacing\@plus\linespacing}{.5\linespacing}%
+	%  {\normalfont\centering}}% DELETED
+	{\normalfont}}% NEW
+\def\section{\@startsection{section}{1}%
+	\z@{.7\linespacing\@plus\linespacing}{.5\linespacing}%
+	%  {\normalfont\scshape\centering}}% DELETED
+	{\normalfont\scshape}}% NEW
+\makeatother
+
+%forces newline after subsection
+\makeatletter
+\def\subsection{\@startsection{subsection}{3}%
+	\z@{.5\linespacing\@plus.7\linespacing}{.1\linespacing}%
+	{\normalfont\itshape}}
+\makeatother
+
+\settasks{counter-format = tsk[1].}
+
+\SetupExSheets{solution/print = true}
+
+%opening
+\title{Complex Functions : Assignment 1}
+\author
+{
+	Aakash Jog\\
+	ID : 989323563
+}
+\date{\formatdate{28}{10}{2015}}
+
+\begin{document}
+
+\tikzset{->-/.style={decoration={
+  markings,
+  mark=at position #1 with {\arrow{>}}},postaction={decorate}}}
+
+\maketitle
+%\setlength{\mathindent}{0pt}
+
+\setcounter{question}{0}
+\begin{question}
+	Calculate
+	\begin{enumerate}
+		\item $\frac{i}{1 - i} + \frac{1 - i}{i}$
+		\item $\left| \frac{1 + 3 i}{3 + i} \right|$
+	\end{enumerate}
+\end{question}
+
+\begin{solution}
+	\begin{enumerate}[leftmargin=*]
+		\item
+			\begin{align*}
+				\frac{i}{1 - i} + \frac{1 - i}{i} &= \frac{i^2}{i (1 - i)} + \frac{(1 - i)^2}{i (1 - i)}\\
+				&= \frac{-1 + 1 - 2 i - 1}{i + 1}\\
+				&= -\frac{2 i + 1}{i + 1}\\
+				&= -\frac{(2 i + 1) (i - 1)}{-1 - 1}\\
+				&= -\frac{-2 - 2 i + i - 1}{-2}\\
+				&= -\frac{-3 - i}{-2}\\
+				&= \frac{-3 - i}{2}
+			\end{align*}
+		\item
+			\begin{align*}
+				\left| \frac{1 + 3 i}{3 + i} \right| &= \left| \frac{(1 + 3 i) (3 - i)}{9 + 1} \right|\\
+				&= \left| \frac{3 - i + 9 i + 3}{10} \right|\\
+				&= \left| \frac{6 + 8 i}{10} \right|\\
+				&= \left| \frac{3}{5} + \frac{4}{5} i \right|\\
+				&= \sqrt{\left( \frac{3}{5} \right)^2 + \left( \frac{4}{5} \right)^2}\\
+				&= \sqrt{\frac{9 + 16}{25}}\\
+				&= 1
+			\end{align*}
+	\end{enumerate}
+\end{solution}
+
+\setcounter{question}{3}
+\begin{question}
+	Prove
+	\begin{enumerate}
+		\item $\overline{z} = \frac{1}{z} \iff |z| = 1$
+		\item $z + \frac{1}{z} \in \mathbb{R} \iff |z| = 1 \text{ or } z \in \mathbb{R}$
+	\end{enumerate}
+\end{question}
+
+\begin{solution}
+	\begin{enumerate}[leftmargin=*]
+		\item
+			\begin{align*}
+				\frac{1}{z} &= \frac{\overline{z}}{z \overline{z}}\\
+				&= \frac{\overline{z}}{|z^2|}
+			\end{align*}
+			Therefore,
+			\begin{align*}
+				\frac{1}{z} &= \overline{z}\\
+				\iff |z^2| &= 1\\
+				\iff |z| &= 1
+			\end{align*}
+			\qed
+		\item
+			Let
+			\begin{align*}
+				z &= x + iy
+			\end{align*}
+			Therefore,
+			\begin{align*}
+				z + \frac{1}{z} &= x + i y + \frac{1}{x + i y}\\
+				&= x + i y + \frac{x - i y}{x^2 + y^2}\\
+				&= \frac{x (x^2 + y^2) + i y (x^2 + y^2) + x - i y}{x^2 + y^2}\\
+				&= \frac{x^3 + x y^2 + i x^2 y + i y^3 + x - i y}{x^2 + y^2}\\
+				&= \frac{x^3 + x y^2 + x}{x^2 + y^2} + i \frac{x^2 y + y^3 - y}{x^2 + y^2}
+			\end{align*}
+			Therefore, $z + \frac{1}{z} \in \mathbb{R}$, if and only if
+			\begin{align*}
+				x^2 y + y^3 - y &= 0\\
+				\iff y (x^2 + y^2 - 1) &= 0\\
+				\iff y (|z|^2 - 1) &= 0
+			\end{align*}
+			If and only if
+			\begin{align*}
+				y &= 0 &\text{ or }&& |z|^2 - 1 &= 0\\
+				\iff z &\in \mathbb{R} &\text{ or }&& |z|^2 &= 1\\
+				\iff z &\in \mathbb{R} &\text{ or }&& |z| &= 1
+			\end{align*}
+			\qed
+	\end{enumerate}
+\end{solution}
+
+\setcounter{question}{4}
+\begin{question}
+	Write the following in polar coordinates and find the argument set $\arg(z)$.
+	\begin{enumerate}
+		\item $-4 i$
+		\item $-2 + 2 i$
+		\item $1 - i$
+		\item $\frac{3 - 4 i}{2 - i}$
+	\end{enumerate}
+\end{question}
+
+\begin{solution}
+	\begin{enumerate}[leftmargin=*]
+		\item
+			\begin{align*}
+				z &= -4 i
+			\end{align*}
+			Let
+			\begin{align*}
+				z &= x + i y
+			\end{align*}
+			Therefore,
+			\begin{align*}
+				x &= 0\\
+				y &= -4
+			\end{align*}
+			Therefore,
+			\begin{align*}
+				r &= \sqrt{x^2 + y^2}\\
+				&= \sqrt{0 + (-4)^2}\\
+				&= 4\\
+				\theta &= \tan^{-1}\left( \frac{y}{x} \right)\\
+				&= \tan^{-1}\left( \frac{-4}{0} \right)\\
+				&= -\frac{\pi}{2}
+			\end{align*}
+			Therefore,
+			\begin{align*}
+				-4 i &= \left( 4 , -\frac{\pi}{2} \right)
+			\end{align*}
+			The argument set is
+			\begin{align*}
+				\arg(z) &= \left\{ -\frac{\pi}{2} + 2 \pi k : k \in \mathbb{Z} \right\}
+			\end{align*}
+		\item
+			\begin{align*}
+				z &= -2 + 2 i
+			\end{align*}
+			Let
+			\begin{align*}
+				z &= x + i y
+			\end{align*}
+			Therefore,
+			\begin{align*}
+				x &= -2\\
+				y &= 2
+			\end{align*}
+			Therefore,
+			\begin{align*}
+				r &= \sqrt{x^2 + y^2}\\
+				&= \sqrt{4 + 4}\\
+				&= 2 \sqrt{2}\\
+				\theta &= \tan^{-1}\left( \frac{y}{x} \right)\\
+				&= \tan^{-1}\left( \frac{2}{-2} \right)\\
+				&= \frac{3 \pi}{2}
+			\end{align*}
+			Therefore,
+			\begin{align*}
+				-2 + 2 i &= \left( 2 \sqrt{2} , \frac{3 \pi}{2} \right)
+			\end{align*}
+			The argument set is
+			\begin{align*}
+				\arg(z) &= \left\{ \frac{3 \pi}{2} + 2 \pi k : k \in \mathbb{Z} \right\}
+			\end{align*}
+		\item
+			\begin{align*}
+				z &= 1 - i
+			\end{align*}
+			Let
+			\begin{align*}
+				z &= x + i y
+			\end{align*}
+			Therefore,
+			\begin{align*}
+				x &= 1\\
+				y &= -1
+			\end{align*}
+			Therefore,
+			\begin{align*}
+				r &= \sqrt{x^2 + y^2}\\
+				&= \sqrt{1 + 1}\\
+				&= \sqrt{2}\\
+				\theta &= \tan^{-1}\left( \frac{y}{x} \right)\\
+				&= \tan^{-1}\left( \frac{-1}{1} \right)\\
+				&= -\frac{\pi}{2}
+			\end{align*}
+			Therefore,
+			\begin{align*}
+				1 - i &= \left( \sqrt{2} , -\frac{\pi}{2} \right)
+			\end{align*}
+			The argument set is
+			\begin{align*}
+				\arg(z) &= \left\{ -\frac{\pi}{2} + 2 \pi k : k \in \mathbb{Z} \right\}
+			\end{align*}
+		\item
+			Let
+			\begin{align*}
+				z_1 &= 3 - 4 i\\
+				z_2 &= 2 - i
+			\end{align*}
+			Let
+			\begin{align*}
+				z_1 &= x_1 + i y_1\\
+				z_2 &= x_2 + i y_2
+			\end{align*}
+			Therefore,
+			\begin{align*}
+				x_1 &= 3\\
+				y_1 &= -4\\
+				x_2 &= 2\\
+				y_2 &= -1
+			\end{align*}
+			Therefore,
+			\begin{align*}
+				r_1 &= \sqrt{{x_1}^2 + {y_1}^2}\\
+				&= \sqrt{9 + 16}\\
+				&= \sqrt{25}\\
+				&= 5\\
+				\theta_1 &= \tan^{-1}\left( \frac{y_1}{x_1} \right)\\
+				&= \tan^{-1}\left( \frac{-4}{3} \right)\\
+				&= -\tan^{-1}\left( \frac{4}{3} \right)\\
+				r_2 &= \sqrt{{x_2}^2 + {y_2}^2}\\
+				&= \sqrt{4 + 1}\\
+				&= \sqrt{5}\\
+				\theta_2 &= \tan^{-1}\left( \frac{y_2}{x_2} \right)\\
+				&= \tan^{-1}\left( \frac{-1}{2} \right)\\
+				&= -\tan^{-1}\left( \frac{1}{2} \right)
+			\end{align*}
+			Therefore,
+			\begin{align*}
+				3 - 4 i &= \left( 5 , -\tan^{-1}\left( \frac{4}{3} \right) \right)\\
+				2 - i &= \left( \sqrt{5} , -\tan^{-1}\left( \frac{1}{2} \right) \right)
+			\end{align*}
+			Therefore,
+			\begin{align*}
+				\frac{z_1}{z_2} &= \left( \frac{r_1}{r_2} , \theta_1 - \theta_2 \right)\\
+				\therefore \frac{3 - 4 i}{2 - i} &= \left( \frac{5}{\sqrt{5}} , -\tan^{-1}\left( \frac{4}{3} - \tan^{-1}\left( \frac{1}{2} \right) \right) \right)\\
+				&= \left( \sqrt{5} , -\tan^{-1}\left( \frac{4}{3} \right) - \tan^{-1}\left( \frac{1}{2} \right) \right)
+			\end{align*}
+			The argument set is
+			\begin{align*}
+				\arg(z) &= \left\{ -\tan^{-1}\left( \frac{4}{3} \right) - \tan^{-1}\left( \frac{1}{2} \right) + 2 \pi k : k \in \mathbb{Z} \right\}
+			\end{align*}
+	\end{enumerate}
+\end{solution}
+
+\setcounter{question}{7}
+\begin{question}
+	Prove that for every $z_1,z_2 \in \mathbb{C}$
+	\begin{align*}
+		|z_1 + z_2| &\ge \left| |z_1| - |z_2| \right|
+	\end{align*}
+\end{question}
+
+\begin{solution}
+	\begin{align*}
+		|z_1| &= |z_1 + z_2 - z_2|\\
+		&\le |z_1 + z_2| + |-z_2|\\
+		\therefore |z_1| &\le |z_1 + z_2| + |z_2|\\
+		\therefore |z_1| - |z_2| &\le |z_1 + z_2|\\
+		\therefore |z_1 + z_2| &\ge \left| |z_1| - |z_2| \right|
+	\end{align*}
+\end{solution}
+
+\end{document}
