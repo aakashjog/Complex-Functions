@@ -61,6 +61,10 @@
 
 \newcommand{\Arg}{\mathrm{Arg}}
 
+\newcommand{\Int}{\mathrm{Int}}
+\newcommand{\Ext}{\mathrm{Ext}}
+\newcommand{\boundary}{\partial}
+
 \makeatletter
 \@addtoreset{section}{part} %resets section numbers in new part
 \makeatother
@@ -318,14 +322,66 @@ Then, $\theta$, such that $\theta \in (-\pi,\pi]$, and
 	$\{z_n\} \to z$, i.e. $\{z_n\}$ converges to $z$ if and only if all subsequences of $\{z_n\}$ converge to $z$.
 \end{theorem}
 
+\begin{question}
+	Find the limit $\lim\limits_{n \to \infty} \frac{n + i}{2 n - i}$.
+\end{question}
+
+\begin{solution}
+	\begin{align*}
+		z_n & = \frac{n + i}{2 n - i}               \\
+                    & = \frac{(n + i) (2 n + i)}{4 n^2 + 1} \\
+                    & = \frac{2 n^2 + 1}{4 n^2 + 1} + i \frac{3 n}{4 n^2 + 1}
+	\end{align*}
+	Therefore,
+	\begin{align*}
+		\lim\limits_{n \to \infty} z_n & = \lim\limits_{n \to \infty} \frac{2 n^2 + 1}{4 n^2 + 1} + i \frac{3 n}{4 n^2 + 1} \\
+                                               & = \frac{1}{2}
+	\end{align*}
+\end{solution}
+
+\begin{question}
+	Show that for
+	\begin{align*}
+		z_n & = -2 + \frac{(-1)^n}{n} i
+	\end{align*}
+	$\lim\limits_{n \to \infty} \Arg(z_n)$ does not exist, but $\lim\limits_{n \to \infty} |z_n|$ exists.
+\end{question}
+
+\begin{solution}
+	The magnitude of $z_n$ is
+	\begin{align*}
+		|z_n| & = \left| -2 + \frac{(-1)^n}{n} i \right| \\
+                      & = \sqrt{4 + \frac{(-1)^{2 n}}{n^2}}      \\
+                      & = \sqrt{4 + \frac{1}{n^2}}
+	\end{align*}
+	Therefore,
+	\begin{align*}
+		\lim\limits_{n \to \infty} |z_n| & = \lim\limits_{n \to \infty} \sqrt{4 + \frac{1}{n^2}} \\
+                                                 & = 2
+	\end{align*}
+	The argument of $z_{2 n}$ is
+	\begin{align*}
+		\Arg(z_{2 n})                                       & = \Arg\left( -2 + \frac{(-1)^{2 n}}{2 n} i \right)                 \\
+		\therefore \lim\limits_{n \to \infty} \Arg(z_{2 n}) & = \lim\limits_{n \to \infty} \Arg\left( -2 + \frac{i}{2 n} \right) \\
+                                                                    & = \pi
+	\end{align*}
+	The argument of $z_{2 n + 1}$ is
+	\begin{align*}
+		\Arg(z_{2 n + 1})                                   & = \Arg\left( -2 + \frac{(-1)^{2 n + 1}}{2 n + 1} i \right)         \\
+		\therefore \lim\limits_{n \to \infty} \Arg(z_{2 n}) & = \lim\limits_{n \to \infty} \Arg\left( -2 - \frac{i}{2 n} \right) \\
+                                                                    & = -\pi
+	\end{align*}
+	Therefore, as the limit of two subsequences are not equal, the limit does not exist.
+\end{solution}<++>
+
 \newpage
 \part{Topology on the Complex Plane}
 
 \begin{definition}[Neighbourhood of a complex number]
 	A circular region of radius $\varepsilon$ centred at $z$, is called the $\varepsilon$ neighbourhood of $z$.
-	\begin{align*}
-		B(z,\varepsilon) & = \left\{ w \in \mathbb{C} : |w - z| < \varepsilon \right\}
-	\end{align*}
+	\begin{equation*}
+		B(z,\varepsilon) = D(z,\varepsilon) = \left\{ w \in \mathbb{C} : |w - z| < \varepsilon \right\}
+	\end{equation*}
 	\begin{figure}[h]
 		\centering
 		\begin{tikzpicture}
@@ -350,26 +406,198 @@ Then, $\theta$, such that $\theta \in (-\pi,\pi]$, and
 			\end{scope}
 
 			\begin{scope}
-				\draw (z) circle (1pt) node [below] {$z$};
+				\filldraw (z) circle (1pt) node [below] {$z$};
 			\end{scope}
 		\end{tikzpicture}
 		\caption{Neighbourhood of a complex number}
 	\end{figure}
 \end{definition}
 
-\begin{definition}[Inner point]
+\begin{definition}[Interior point]
 	Let $A \subseteq \mathbb{C}$.\\
-	$z \in \mathbb{C}$ is called an inner point of $A$ if there exists at least one $\varepsilon_z > 0$, such that $B(z,\varepsilon_z) \subset A$.
+	$z \in \mathbb{C}$ is called an inner or interior point of $A$ if there exists at least one $\varepsilon_z > 0$, such that $B(z,\varepsilon_z) \subset A$.\\
+	The set of all interior points of $A$ is denoted by $\Int(A)$ or $A^{\circ}$.
 \end{definition}
 
-\begin{definition}[Outer point]
+\begin{definition}[Exterior point]
 	Let $A \subseteq \mathbb{C}$.\\
-	$z \in \mathbb{C}$ is called an outer point of $A$ if there exists at least one $\varepsilon_z > 0$, such that $B(z,\varepsilon_z) \subset (\mathbb{C} \setminus A)$.
+	$z \in \mathbb{C}$ is called an outer or exterior point of $A$ if there exists at least one $\varepsilon_z > 0$, such that $B(z,\varepsilon_z) \subset (\mathbb{C} \setminus A)$.
+	The set of all exterior points of $A$ is denoted by $\Ext(A)$.
 \end{definition}
 
 \begin{definition}[Edge point]
 	Let $A \subseteq \mathbb{C}$.\\
-	$z \in \mathbb{C}$ is called an edge point of $A$ if it is neither an inner point of $A$, nor an outer point of $A$.
+	$z \in \mathbb{C}$ is called an edge or boundary point of $A$ if it is neither an inner point of $A$, nor an outer point of $A$.
+	The set of all boundary points of $A$ is denoted by $\boundary(A)$.
 \end{definition}
+
+\begin{definition}[Open set]
+	A set $A \subseteq \mathbb{C}$ is called an open set if $A = A^{\circ}$, i.e. for any point $z \in A$, $\exists \varepsilon > 0$, such that $D(z,\varepsilon) \subset A$.
+\end{definition}
+
+\begin{definition}[Closer of a set]
+	The closer of $A$ is defined to be
+	\begin{align*}
+		\overline{A} &= A^{\circ} \cup \boundary A
+	\end{align*}
+\end{definition}
+
+\begin{definition}[Closed set]
+	A set $A$ is called a closed set if $\boundary A \subset A$, i.e. $A = \overline{A}$.
+\end{definition}
+
+\begin{definition}[Connected set]
+	A set $A$ is called a connected set of for any $z_1,z_n \in A$, there exists a polygonal path, i.e. a finite set of connected straight lines, which connects $z_1$ and $z_2$, and belongs to $A$.
+\end{definition}
+
+\begin{definition}[Domain]
+	An open connected set is called a domain.
+\end{definition}
+
+\begin{definition}[Bound set]
+	A set $A$ is said to be a bound set if it is bound inside a disk.
+\end{definition}
+
+\begin{question}
+	Describe geometrically and list the properties of the following sets.
+	\begin{enumerate}
+		\item $A = \left\{ z \in \mathbb{C} : \Re(z) \ge 2 , \Im(z) \le 4 \right\}$
+		\item $B = \left\{ z \in \mathbb{C} : |z - 1 + 3 i| > 3 \right\}$
+	\end{enumerate}
+\end{question}
+
+\begin{solution}
+	\begin{enumerate}[leftmargin=*]
+		\item
+			$A$ is the union of the bottom half plane with respect to the line $y = 4$, and the right half plane with respect to the line $x = 2$.
+			\begin{figure}[H]
+				\centering
+				\begin{tikzpicture}[scale = 0.7]
+					\def\xMIN{-6};
+					\def\xMAX{6};
+					\def\yMIN{-6};
+					\def\yMAX{6};
+
+					\begin{scope}
+						\draw (\xMIN,0) -- (\xMAX,0) node [right] {$\Re$};
+						\draw (0,\yMIN) -- (0,\yMAX) node [above] {$\Im$};
+					\end{scope}
+
+					\begin{scope}
+						\fill [red, opacity = 0.5] (2,4) rectangle (\xMAX,\yMIN);
+					\end{scope}
+
+					\begin{scope}[stealth-stealth]
+						\draw (\xMIN,0) -- (\xMAX,0);
+						\draw (0,\yMIN) -- (0,\yMAX);
+					\end{scope}
+				\end{tikzpicture}
+			\end{figure}
+			Therefore, as $A = A^{\circ} + \boundary A$, it is a closer, unbounded set.
+		\item
+			$A$ is the complement of a disk, centred at $1 - 3 i$, with radius $3$.
+			\begin{figure}[H]
+				\centering
+				\begin{tikzpicture}[scale = 0.7]
+					\def\xMIN{-8};
+					\def\xMAX{8};
+					\def\yMIN{-8};
+					\def\yMAX{8};
+
+					\begin{scope}
+						\draw (1,-3) circle (1pt) node [above left] {$1 - 3 i$};
+					\end{scope}
+
+					\begin{scope}
+						\fill [red, opacity = 0.5] (\xMIN,\yMIN) rectangle (\xMAX,\yMAX);
+						\fill [white] (1,-3) circle (3);
+					\end{scope}
+
+					\begin{scope}[stealth-stealth]
+						\draw (\xMIN,0) -- (\xMAX,0) node [right] {$\Re$};
+						\draw (0,\yMIN) -- (0,\yMAX) node [above] {$\Im$};
+					\end{scope}
+				\end{tikzpicture}
+			\end{figure}
+			Therefore, it is an open, unbounded set.
+	\end{enumerate}
+\end{solution}
+
+\begin{question}
+	Prove that the upper half plane $U = \left\{ z : \Im(z) > 0 \right\}$ is open.
+\end{question}
+
+\begin{solution}
+	Let
+	\begin{align*}
+		z & = x + i y
+	\end{align*}
+	Therefore, as $z \in U$, $y > 0$.\\
+	Therefore, consider the disk $D\left( z , \frac{y}{2} \right)$.\\
+	Let $w \in D\left( z , \frac{y}{2} \right)$.
+	Therefore,
+	\begin{align*}
+		|w - z|                              & < \frac{y}{2} \\
+		\therefore \left| \Im(w - z) \right| & \le |w - z|   \\
+                                                     & \le \frac{y}{2}
+	\end{align*}
+	Therefore,
+	\begin{gather*}
+		-\frac{y}{2} \le \Im(w) - \Im(z) \le \frac{y}{2}\\
+		\therefore -\frac{y}{2} \le \Im(w) - y \le \frac{y}{2}\\
+		\therefore \Im(w) \ge \frac{y}{2} > 0
+	\end{gather*}
+	Therefore, as $\Im(w) > 0$, $w \in U$.
+	Therefore, $U$ is open.
+	\qed
+\end{solution}
+
+\newpage
+\part{Complex Functions}
+
+\section{Complex Functions}
+
+\begin{definition}[Complex function]
+	Let $A \subseteq \mathbb{C}$.
+	$f : A \to \mathbb{C}$ is called a complex function, which matches $z \in A$ to $f(z) \in \mathbb{C}$.
+\end{definition}
+
+\begin{theorem}
+	Any complex function $f$ can be written as
+	\begin{align*}
+		f(x + i y) & = \Re f(x + i y) + i \Im f(x + i y) \\
+                           & = u(x,y) + i v(x,y)
+	\end{align*}
+\end{theorem}
+
+\section{Limits}
+
+\begin{definition}
+	Let $f$ be a complex function defined on a neighbourhood of $z_0$, but may or may not be defined at $z_0$.
+	Then, the limit of $f(z)$ at $z_0$ is defined as
+	\begin{align*}
+		w & = \lim\limits_{z \to z_0} f(z)
+	\end{align*}
+	if $\forall \varepsilon > 0$, $\exists \delta > 0$, such that $\forall z \in \mathbb{X}$such that $|z - z_0| < \delta$, $\left| f(z) - w \right| < \varepsilon$.
+\end{definition}
+
+\begin{question}
+	Show that
+	\begin{align*}
+		\lim\limits_{z \to 1} \frac{i z}{2} & = \frac{i}{2}
+	\end{align*}
+\end{question}
+
+\begin{solution}
+	Let $|z - 1| < \delta$.
+	Therefore, for $\varepsilon > 0$,
+	\begin{align*}
+		\left| f(z) - \frac{i}{2} \right| & = \left| \frac{i z}{2} - \frac{i}{2} \right| \\
+                                                  & = \left| \frac{i}{2} \right| |z - 1|         \\
+                                                  & = \frac{1}{2} \left| z - i \right|
+	\end{align*}
+	Therefore, for $\delta \le 2 \varepsilon$, $\left| f(z) - \frac{i}{2} \right| < \varepsilon$.
+	\qed
+\end{solution}
 
 \end{document}
