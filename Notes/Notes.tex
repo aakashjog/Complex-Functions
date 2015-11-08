@@ -1,4 +1,4 @@
-\documentclass[fleqn, a4paper, 12pt, twoside]{article}
+\documentclass[titlepage, fleqn, a4paper, 12pt, twoside]{article}
 \usepackage{exsheets} %question and solution environments
 \usepackage{amsmath, amssymb, amsthm} %standard AMS packages
 \usepackage{esint} %integral signs
@@ -44,6 +44,17 @@
 \usepackage{qtree}
 \usepackage{varwidth}
 \usepackage{asymptote}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{ifdraft}
+	\ifoptiondraft
+	{%
+		\doublespacing
+		\usepackage{showframe}
+	}
+	{%
+	    % nothing to be done here
+	}
 
 \newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}} %adds numbers to specific equations in non-numbered list of equations
 
@@ -89,6 +100,7 @@
 
 \begin{document}
 
+\pagenumbering{roman}
 \maketitle
 %\setlength{\mathindent}{0pt}
 
@@ -128,6 +140,7 @@ E-mail: \href{mailto:zahihaza@post.tau.ac.il}{zahihaza@post.tau.ac.il}\\
 \end{enumerate}
 
 \newpage
+\pagenumbering{arabic}
 \part{Complex Numbers}
 
 \begin{definition}
