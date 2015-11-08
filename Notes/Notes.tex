@@ -484,7 +484,7 @@ Then, $\theta$, such that $\theta \in (-\pi,\pi]$, and
 					\end{scope}
 
 					\begin{scope}
-						\fill [red, opacity = 0.5] (2,4) rectangle (\xMAX,\yMIN);
+						\fill [lightgray, opacity = 0.5] (2,4) rectangle (\xMAX,\yMIN);
 					\end{scope}
 
 					\begin{scope}[stealth-stealth]
@@ -509,7 +509,7 @@ Then, $\theta$, such that $\theta \in (-\pi,\pi]$, and
 					\end{scope}
 
 					\begin{scope}
-						\fill [red, opacity = 0.5] (\xMIN,\yMIN) rectangle (\xMAX,\yMAX);
+						\fill [lightgray, opacity = 0.5] (\xMIN,\yMIN) rectangle (\xMAX,\yMAX);
 						\fill [white] (1,-3) circle (3);
 					\end{scope}
 
@@ -572,7 +572,7 @@ Then, $\theta$, such that $\theta \in (-\pi,\pi]$, and
 
 \section{Limits}
 
-\begin{definition}
+\begin{definition}[Limit of a function]
 	Let $f$ be a complex function defined on a neighbourhood of $z_0$, but may or may not be defined at $z_0$.
 	Then, the limit of $f(z)$ at $z_0$ is defined as
 	\begin{align*}
@@ -598,6 +598,216 @@ Then, $\theta$, such that $\theta \in (-\pi,\pi]$, and
 	\end{align*}
 	Therefore, for $\delta \le 2 \varepsilon$, $\left| f(z) - \frac{i}{2} \right| < \varepsilon$.
 	\qed
+\end{solution}
+
+\begin{theorem}
+	If
+	\begin{align*}
+		f(z) & = f(x + i y) \\
+                     & = u(x,y) + i v(x,y)
+	\end{align*}
+	then
+	\begin{align*}
+		\lim\limits_{z \to z_0} f(z) & = u_0 + i v_0
+	\end{align*}
+	if and only if
+	\begin{align*}
+		\lim\limits_{(x,y) \to (x_0,y_0)} u(x,y) & = u_0 \\
+		\lim\limits_{(x,y) \to (x_0,y_0)} v(x,y) & = v_0
+	\end{align*}
+\end{theorem}
+
+\begin{theorem}[Limit arithmetics]
+	If
+	\begin{align*}
+		\lim\limits_{z \to z_0} f(z) & = w_1 \\
+		\lim\limits_{z \to z_0} g(z) & = w_2
+	\end{align*}
+	then, as long as all quantities are defined,
+	\begin{align*}
+		\lim\limits_{z \to z_0} f(z) \pm g(z)     & = w_1 \pm w_2 \\
+		\lim\limits_{z \to z_0} f(z) g(z)         & = w_1 w_2     \\
+		\lim\limits_{z \to z_0} \frac{f(z)}{g(z)} & = \frac{w_1}{w_2}
+	\end{align*}
+\end{theorem}
+
+\begin{question}
+	For the function $f(z) = \overline{z}^2$, prove
+	\begin{align*}
+		\lim\limits_{z \to z_0} f(z) & = f(z_0) \\
+                                             & = \overline{z_0}^2
+	\end{align*}
+\end{question}
+
+\begin{solution}
+	\begin{align*}
+		\overline{z} & = \left( \overline{x + i y} \right)^2 \\
+                             & = (x - i y)^2                         \\
+                             & = x^2 - y^2 - 2 x y i
+	\end{align*}
+	Therefore, let
+	\begin{align*}
+		u(x,y) & = x^2 - y^2 \\
+		v(x,y) & = -2 x y
+	\end{align*}
+	Therefore,
+	\begin{align*}
+		\lim\limits_{(x,y) \to (x_0,y_0)} u(x,y) & = {x_0}^2 - {y_0}^2 \\
+		\lim\limits_{(x,y) \to (x_0,y_0)} v(x,y) & = -2 x_0 y_0
+	\end{align*}
+	Therefore,
+	\begin{align*}
+		\lim\limits_{z \to z_0} f(z) & = u_0 + i v_0                     \\
+                                             & = {x_0}^2 - {y_0}^2 - 2 x_0 y_0 i \\
+                                             & = \overline{z_0}^2
+	\end{align*}
+	\qed
+\end{solution}
+
+\begin{definition}[Infinite limit]
+	The limit of $f(z)$ is said to be infinite, i.e.
+	\begin{align*}
+		\lim\limits_{z \to z_0} f(z) & = \infty
+	\end{align*}
+	if and only if
+	\begin{align*}
+		\lim\limits_{z \to z_0} |f(z)| & = \infty
+	\end{align*}
+	if and only if
+	\begin{align*}
+		\lim\limits_{z \to z_0} \frac{1}{f(z)} & = 0
+	\end{align*}
+\end{definition}
+
+\begin{definition}[Limit at infinity]
+	The limit of a function $f(z)$,
+	\begin{align*}
+		\lim\limits_{z \to \infty} f(z) & = w
+	\end{align*}
+	if
+	\begin{align*}
+		\lim\limits_{|z| \to \infty} f(z) & = w
+	\end{align*}
+	Alternatively, $\forall \varepsilon > 0$, $\exists R > 0$, such that for $|z| > R$, $\left| f(x) - w \right| < \varepsilon$.
+\end{definition}
+
+\begin{question}
+	Show that
+	\begin{align*}
+		\lim\limits_{z \to \infty} \frac{1}{z^2} & = 0
+	\end{align*}
+\end{question}
+
+\begin{solution}
+	Let $\varepsilon > 0$.
+	Let $R > 0$, such that $\frac{1}{R^2} < \varepsilon$.\\
+	Therefore, if $|z| > R$,
+	\begin{align*}
+		\left| f(z) - 0 \right| & = \left| \frac{1}{z^2} \right| \\
+                                        & = \frac{1}{\left| z^2 \right|} \\
+                                        & = \frac{1}{|z|^2}              \\
+                                        & < \frac{1}{R^2}                \\
+                                        & < \varepsilon
+	\end{align*}
+	Therefore, $\lim\limits_{z \to \infty} \frac{1}{z^2} = 0$.
+\end{solution}
+
+\section{Continuity}
+
+\begin{definition}[Continuous function]
+	$f(z)$ is said to be continuous at $z_0$ if $f(z)$ is defined at $z_0$ and 
+	\begin{align*}
+		\lim\limits_{z \to z_0} f(z) & = f(z_0)
+	\end{align*}
+\end{definition}
+
+\begin{theorem}[Continuity arithmetics]
+	If
+	\begin{align*}
+		\lim\limits_{z \to z_0} f(z) & = f(z_0) \\
+		\lim\limits_{z \to z_0} g(z) & = g(z_0)
+	\end{align*}
+	then, as long as all quantities are defined,
+	\begin{align*}
+		\lim\limits_{z \to z_0} f(z) \pm g(z)     & = f(z_0) \pm g(z_0) \\
+		\lim\limits_{z \to z_0} f(z) g(z)         & = f(z_0) g(z_0)     \\
+		\lim\limits_{z \to z_0} \frac{f(z)}{g(z)} & = \frac{f(z_0)}{g(z_0)}
+	\end{align*}
+\end{theorem}
+
+\section{Differentiability}
+
+\begin{definition}[Differentiable function]
+	Let $f(z)$ be defined in a neighbourhood of $z_0$.
+	$f$ is said to be differentiable at $z_0$ if the limit $\lim\limits_{z \to z_0} \frac{f(z) - f(z_0)}{z - z_0}$ exists.
+\end{definition}
+
+\begin{theorem}[Differentiation arithmetics]
+	If $f(z)$ and $g(z)$ are differentiable, then, as long as all quantities are defined,
+	\begin{align*}
+		\left( f(z) \pm g(z) \right)'     & = f'(z) \pm g'(z)         \\
+		\left( f(z) g(z) \right)'         & = f'(z) g(z) + f(z) g'(z) \\
+		\left( \frac{f(z)}{g(z)} \right)' & = \frac{f'(z) g(z) - f(z) g'(z)}{{g(z)}^2}
+	\end{align*}
+\end{theorem}
+
+\section{Cauchy-Riemann Equations}
+
+\begin{theorem}
+	$u(x,y)$ and $v(x,y)$ are said to be satisfying Cauchy-Riemann Equations at a point $(a,b) \in \mathbb{R}^2$, if
+	\begin{align*}
+		u_x(a,b) & = v_y(a,b) \\
+		u_y(a,b) & = -v_x(a,b)
+	\end{align*}
+	\label{Cauchy-Riemann_Equations}
+\end{theorem}
+
+\begin{theorem}
+	Let
+	\begin{align*}
+		f(x + i y) & = u(x,y) + i v(x,y)
+	\end{align*}
+	Then, $u$ and $v$ satisfying the \nameref{Cauchy-Riemann_Equations} is a necessary condition for $f$ to be differentiable at $(x_0,y_0$.
+\end{theorem}
+
+\begin{theorem}
+	If $f = u + i v$ is differentiable at $z_0 = a + i b$, then $(u,v)$ satisfies the \nameref{Cauchy-Riemann_Equations} at $(a,b)$.
+\end{theorem}
+
+\begin{definition}[Analytic functions]
+	If $f = u + i v$ is differentiable at any $z \in W$, where $W$ is a neighbourhood of $z_0$ except maybe at $z_0$, then $f$ is said to be analytic at $z_0$.
+	If $f$ is analytic at all $z \in W$, then it is said to be analytic in $W$.
+\end{definition}
+
+\begin{question}
+	Let $f : U \to \mathbb{C}$ be an analytic function in $U$, such that $\overline{f}$ is also analytic in $U$.
+	Show that $f' = 0$, i.e. $f = c$.
+\end{question}
+
+\begin{solution}
+	As $f = u + i v$ is analytic, by \nameref{Cauchy-Riemann_Equations}, for $(x,y) \in U$,
+	\begin{align*}
+		u_x(x,y) & = v_y(x,y) \\
+		u_y(x,y) & = -v_x(x,y)
+	\end{align*}
+	As $\overline{f} = u - i v$ is analytic, by \nameref{Cauchy-Riemann_Equations}, for $(x,y) \in U$,
+	\begin{align*}
+		u_x(x,y) & = -v_y(x,y) \\
+		u_y(x,y) & = v_x(x,y)
+	\end{align*}
+	Therefore,
+	\begin{align*}
+		v_y & = -v_y \\
+                    & = 0    \\
+		v_x & = -v_x \\
+                    & = 0
+	\end{align*}
+	Therefore,
+	\begin{align*}
+		u_x(x,y) & = 0 \\
+		u_y(x,y) & = 0
+	\end{align*}
+	Therefore, $u$ and $v$ are constant functions.
 \end{solution}
 
 \end{document}
