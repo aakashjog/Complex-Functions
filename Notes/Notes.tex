@@ -766,7 +766,7 @@ Then, $\theta$, such that $\theta \in (-\pi,\pi]$, and
 
 \section{Cauchy-Riemann Equations}
 
-\begin{theorem}
+\begin{theorem}[Cauchy-Riemann Equations]
 	$u(x,y)$ and $v(x,y)$ are said to be satisfying Cauchy-Riemann Equations at a point $(a,b) \in \mathbb{R}^2$, if
 	\begin{align*}
 		u_x(a,b) & = v_y(a,b) \\
@@ -822,5 +822,92 @@ Then, $\theta$, such that $\theta \in (-\pi,\pi]$, and
 	\end{align*}
 	Therefore, $u$ and $v$ are constant functions.
 \end{solution}
+
+\section{Harmonic Functions}
+
+\begin{definition}[Laplacian]
+	Let $u$ be an equation in $x$ and $y$.\\
+	The Laplacian is defined to be
+	\begin{align*}
+		\Delta u & = \nabla^2 u \\
+                         & = u_{x x} + u_{y y}
+	\end{align*}
+\end{definition}
+
+\begin{definition}[Harmonic function]
+	A real function in two variables, $u(x,y)$, which is twice differentiable, is called a harmonic function if it satisfies
+	\begin{align*}
+		\Delta u & = u_{x x} + u_{y y} \\
+                         & = 0
+	\end{align*}
+\end{definition}
+
+\begin{theorem}
+	If $u$ and $v$ are twice differentiable, and satisfy \nameref{Cauchy-Riemann_Equations}, then $(u,v)$ are harmonic.
+\end{theorem}
+
+\begin{theorem}
+	Let $f = u + i v$ be defined in a neighbourhood of $z_0 = a + i b$.
+	Assume that $u_x$, $u_y$, $v_x$, $v_y$ exist in this neighbourhood and are continuous at the point $(a,b)$.
+	If $(u,v)$ satisfying \nameref{Cauchy-Riemann_Equations} at $(a,b)$ then $f'(z_0)$ exists.
+\end{theorem}
+
+\section{Analytic Functions}
+
+\begin{definition}
+	$f : D \to \mathbb{C}$ is said to be differentiable on $D \subset \mathbb{C}$, if $f$ is differentiable at any $z \in D$.
+\end{definition}
+
+\begin{definition}[Analytic functions]
+	If $f = u + i v$ is differentiable at any $z \in W$, where $W$ is a neighbourhood of $z_0$ except maybe at $z_0$, then $f$ is said to be analytic at $z_0$.
+	If $f$ is analytic at all $z \in W$, then it is said to be analytic in $W$.
+\end{definition}
+
+\begin{theorem}
+	Let $D \subset \mathbb{C}$ be an open set.
+	Then, $f$ is differentiable on $D$ if and only if $f$ is analytic on $D$.
+\end{theorem}
+
+\begin{theorem}
+	Let $D \subseteq \mathbb{C}$ be a domain.
+	Assume that $f$ is analytic on $D$, and for any $z \in D$, $f'(z) = 0$.
+	Then, $f$ is constant.
+\end{theorem}
+
+\begin{theorem}
+	Let $u(x,y) : \mathbb{R}^2 \to \mathbb{R}$ be a function such that $\nabla u = 0$ in a domain $D \subset \mathbb{R}^2$.
+	Then, $u$ is constant in $D$.
+\end{theorem}
+
+\section{Elementary Functions}
+
+\begin{theorem}
+	\begin{align*}
+		\left| e^z \right| & = e^{\Re(z)}
+	\end{align*}
+\end{theorem}
+
+\begin{proof}
+	\begin{align*}
+		\left| e^{z} \right| & = \left| e^{\Re(z)} \right| \left| e^{\Im(z)} \right|                                              \\
+                                     & = \left| e^{\Re(z)} \right| \left| \cos\left( \Im(z) \right) + i \sin\left( \Im(z) \right) \right| \\
+                                     & = e^{\Re(z)}
+	\end{align*}
+\end{proof}
+
+\begin{definition}[Trigonometric functions of complex numbers]
+	Trigonometric functions of complex numbers are defined as
+	\begin{align*}
+		\cos(z)  & = \frac{e^{i z} + e^{-i z}}{2}   \\
+		\sin(z)  & = \frac{e^{i z} - e^{-i z}}{2 i} \\
+		\cosh(z) & = \frac{e^z + e^{-z}}{2}         \\
+		\sinh(z) & = \frac{e^z - e^{-z}}{2}
+	\end{align*}
+\end{definition}
+
+\begin{definition}[Harmonic conjugate]
+	Let $u : \mathbb{R}^2 \to \mathbb{R}$ be a harmonic function.
+	Its harmonic conjugate is defined to be $v : \mathbb{R}^2 \to \mathbb{R}$, such that $f = u + i v$ is analytic.
+\end{definition}
 
 \end{document}
