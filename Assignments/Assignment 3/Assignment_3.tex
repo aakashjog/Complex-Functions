@@ -1,0 +1,202 @@
+\documentclass[fleqn, a4paper, 11pt, oneside]{amsart}
+%\usepackage[top = 2cm, bottom = 1cm, left = 1cm, right = 1cm]{geometry}
+\usepackage{exsheets, tasks}
+\usepackage{amsmath, amssymb, amsthm} %standard AMS packages
+\usepackage{marginnote} %marginnotes
+\usepackage{gensymb} %miscellaneous symbols
+\usepackage{commath} %differential symbols
+\usepackage{xcolor} %colours
+\usepackage{cancel} %cancelling terms
+\usepackage[free-standing-units, space-before-unit]{siunitx} %formatting units
+\usepackage{tikz, pgfplots} %diagrams
+\usetikzlibrary{calc, hobby, patterns, intersections, decorations.markings}
+\usepackage{graphicx} %inserting graphics
+\usepackage{hyperref} %hyperlinks
+\usepackage{datetime} %date and time
+\usepackage{ulem} %underline for \emph{}
+\usepackage{xfrac} %inline fractions
+\usepackage{enumerate,enumitem} %numbered lists
+\usepackage{float} %inserting floats
+\usepackage{circuitikz}[american voltages, american currents] %circuit diagrams
+
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}} %adds numbers to specific equations in non-numbered list of equations
+
+\newcommand{\AxisRotator}[1][rotate=0]{
+	\tikz [x=0.25cm,y=0.60cm,line width=.2ex,-stealth,#1] \draw (0,0) arc (-150:150:1 and 1);%
+} %rotation symbols on axes
+
+\theoremstyle{definition}
+\newtheorem{example}{Example}
+\newtheorem{definition}{Definition}
+
+\theoremstyle{theorem}
+\newtheorem{theorem}{Theorem}
+
+\newcommand{\curl}{\mathrm{curl\,}}
+
+\newcommand{\Arg}{\mathrm{Arg}}
+
+\newcommand{\Int}{\mathrm{Int}}
+\newcommand{\Ext}{\mathrm{Ext}}
+\newcommand{\boundary}{\partial}
+
+\makeatletter
+\@addtoreset{section}{part} %resets section numbers in new part
+\makeatother
+
+\renewcommand{\thesubsection}{(\arabic{subsection})}
+\renewcommand{\thesection}{(\arabic{section})}
+
+%section headings on left
+\makeatletter
+\def\specialsection{\@startsection{section}{1}%
+	\z@{\linespacing\@plus\linespacing}{.5\linespacing}%
+	%  {\normalfont\centering}}% DELETED
+	{\normalfont}}% NEW
+\def\section{\@startsection{section}{1}%
+	\z@{.7\linespacing\@plus\linespacing}{.5\linespacing}%
+	%  {\normalfont\scshape\centering}}% DELETED
+	{\normalfont\scshape}}% NEW
+\makeatother
+
+%forces newline after subsection
+\makeatletter
+\def\subsection{\@startsection{subsection}{3}%
+	\z@{.5\linespacing\@plus.7\linespacing}{.1\linespacing}%
+	{\normalfont\itshape}}
+\makeatother
+
+\settasks{counter-format = tsk[1].}
+
+\SetupExSheets{solution/print = true}
+
+%opening
+\title{Complex Functions : Assignment 3}
+\author
+{
+	Aakash Jog\\
+	ID : 989323563
+}
+\date{\formatdate{18}{11}{2015}}
+
+\begin{document}
+
+\tikzset{->-/.style={decoration={
+  markings,
+  mark=at position #1 with {\arrow{>}}},postaction={decorate}}}
+
+\maketitle
+%\setlength{\mathindent}{0pt}
+
+\setcounter{question}{0}
+\begin{question}
+	Prove or disprove.
+	\begin{enumerate}
+		\item $\lim\limits_{z \to 0} e^{\frac{1}{z}} = \infty$
+		\item $\lim\limits_{z \to 0} e^{\frac{1}{|z|}} = \infty$
+	\end{enumerate}
+\end{question}
+
+\begin{solution}
+	\begin{enumerate}[leftmargin=*]
+		\item
+			\begin{align*}
+				\lim\limits_{z \to 0} e^{\frac{1}{z}} & = \lim\limits_{r \to 0} e^{\frac{1}{r e^{i \theta}}}               \\
+                                                                      & = \lim\limits_{r \to 0} {e^{\frac{1}{r}}}^{\frac{1}{e^{i \theta}}} \\
+                                                                      & = \infty
+			\end{align*}
+		\item
+			\begin{align*}
+				\lim\limits_{z \to 0} e^{\frac{1}{|z|}} & = \lim\limits_{r \to 0} e^{\frac{1}{r}} \\
+                                                                        & = \infty
+			\end{align*}
+	\end{enumerate}
+\end{solution}
+
+\setcounter{question}{1}
+\begin{question}
+	Find the domain of analyticity of the following functions.
+	\begin{enumerate}
+		\setcounter{enumi}{1}
+		\item $f(z) = \frac{z^2 + 1}{(z + 2) \left( z^2 + 2 z + 2 \right)}$
+	\end{enumerate}
+\end{question}
+
+\begin{solution}
+	\begin{enumerate}[leftmargin=*]
+		\setcounter{enumi}{1}
+		\item
+			\begin{align*}
+				f(z) & = \frac{z^2 + 1}{(z + 2) \left( z^2 + 2 z + 2 \right)} \\
+                                     & = \frac{z^2 + 1}{(z + 2) (z + 1 - i) (z + 1 + i)}
+			\end{align*}
+			Therefore, $f(z)$ is defined and is differentiable over $\mathbb{C} \setminus \{-2 , -1 + i , -1 - i\}$.\\
+			Hence, $f(z)$ is analytic at $(-2,0)$, $(-1,1)$, $(-1,-1)$.
+	\end{enumerate}
+\end{solution}
+
+\setcounter{question}{3}
+\begin{question}
+	Calculate $f'(z)$.
+	\begin{enumerate}
+		\setcounter{enumi}{1}
+		\item $f(z) = \frac{8 z^2 - 3}{z^2 + 1}$
+	\end{enumerate}
+\end{question}
+
+\begin{solution}
+	\begin{enumerate}
+		\setcounter{enumi}{1}
+		\item
+			\begin{align*}
+				f(z) & = \frac{8 z^2 - 3}{z^2 + 1}      \\
+                                     & = \frac{8 z^2 + 8 - 11}{z^2 + 1} \\
+                                     & = 8 - \frac{11}{z^2 + 1}
+			\end{align*}
+			Therefore, as $f(z)$ is defined on $\mathbb{C} \setminus \{(0,1),(0,-1)\}$, it is analytic at $(0,1)$ and $(0,-1)$.
+			Therefore,
+			\begin{align*}
+				f'(z) & = \frac{22}{\left( z^2 + 1 \right)^2}
+			\end{align*}
+	\end{enumerate}
+\end{solution}
+
+\setcounter{question}{5}
+\begin{question}
+	Let $f(z) = \overline{z}$.
+	Show that $f$ doesn't satisfy the polar Cauchy-Riemann equations and conclude that $f$ isn't differentiable at any point in the plane.
+\end{question}
+
+\begin{solution}
+	\begin{align*}
+		f(z) & = \overline{z} \\
+                     & = x - i y
+	\end{align*}
+	Therefore,
+	\begin{align*}
+		u(r,\theta) & = x             \\
+                            & = r \cos \theta \\
+		v(r,\theta) & = -y            \\
+                            & = -r \sin \theta
+	\end{align*}
+	Therefore,
+	\begin{align*}
+		u_r        & = \cos \theta    \\
+		u_{\theta} & = -r \sin \theta \\
+		v_r        & = -\sin \theta   \\
+		v_{\theta} & = -r \cos \theta
+	\end{align*}
+	Therefore,
+	\begin{align*}
+		u_r                 & = v_{\theta}     \\
+		\iff \cos \theta    & = -r \cos \theta \\
+		\iff r              & = -1             \\
+		u_{\theta}          & = -v_r           \\
+		\iff -r \sin \theta & = \sin \theta    \\
+		\iff r              & = -1
+	\end{align*}
+	However, $r$ cannot be negative.
+	Therefore, the function does not satisfy the Cauchy-Riemann equations, and hence is not differentiable at any point in the plane.
+\end{solution}
+
+\end{document}
