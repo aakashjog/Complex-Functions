@@ -136,7 +136,9 @@
                             & = \Re\left( \frac{e^{-y} \cos x + i e^{-y} \sin x - e^y \cos(-x) - i e^y \sin(-x)}{2 i} \right)           \\
                             & = \Re\left( \frac{e^{-y} \cos x - e^y \cos(-x)}{2 i} + i \frac{e^{-y} \sin x - e^y \sin(-x)}{2 i} \right) \\
                             & = \Re\left( \frac{e^{-y} \sin x + e^y \sin x}{2} - i \frac{e^{-y} \cos x - e^y \cos x}{2} \right)         \\
-                            & = \frac{e^{-y} \sin x + e^y \sin x}{2}
+                            & = \frac{e^{-y} \sin x + e^y \sin x}{2}                                                                    \\
+                            & = \sin x \left( \frac{e^{-y} + e^y}{2} \right)                                                            \\
+                            & = \sin x \cosh y
 	\end{align*}
 	\begin{align*}
 		\Im(\sin z) & = \Im\left( \frac{e^{i z} - e^{-i z}}{2 i} \right)                                                        \\
@@ -146,7 +148,9 @@
                             & = \Im\left( \frac{e^{-y} \cos x + i e^{-y} \sin x - e^y \cos(-x) - i e^y \sin(-x)}{2 i} \right)           \\
                             & = \Im\left( \frac{e^{-y} \cos x - e^y \cos(-x)}{2 i} + i \frac{e^{-y} \sin x - e^y \sin(-x)}{2 i} \right) \\
                             & = \Im\left( \frac{e^{-y} \sin x + e^y \sin x}{2} - i \frac{e^{-y} \cos x - e^y \cos x}{2} \right)         \\
-                            & = \frac{e^y \cos x - e^{-y} \cos x}{2}
+                            & = \frac{e^y \cos x - e^{-y} \cos x}{2}                                                                    \\
+                            & = \cos x \frac{e^y - e^{-y}}{2}                                                                           \\
+                            & = \cos x \sinh y
 	\end{align*}
 \end{solution}
 
