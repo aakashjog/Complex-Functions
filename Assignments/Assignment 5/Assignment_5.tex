@@ -1,0 +1,209 @@
+\documentclass[fleqn, a4paper, 11pt, oneside]{amsart}
+%\usepackage[top = 2cm, bottom = 1cm, left = 1cm, right = 1cm]{geometry}
+\usepackage{exsheets, tasks}
+\usepackage{amsmath, amssymb, amsthm} %standard AMS packages
+\usepackage{marginnote} %marginnotes
+\usepackage{gensymb} %miscellaneous symbols
+\usepackage{commath} %differential symbols
+\usepackage{xcolor} %colours
+\usepackage{cancel} %cancelling terms
+\usepackage[free-standing-units, space-before-unit]{siunitx} %formatting units
+\usepackage{tikz, pgfplots} %diagrams
+\usetikzlibrary{calc, hobby, patterns, intersections, decorations.markings}
+\usepackage{graphicx} %inserting graphics
+\usepackage{hyperref} %hyperlinks
+\usepackage{datetime} %date and time
+\usepackage{ulem} %underline for \emph{}
+\usepackage{xfrac} %inline fractions
+\usepackage{enumerate,enumitem} %numbered lists
+\usepackage{float} %inserting floats
+\usepackage{circuitikz}[american voltages, american currents] %circuit diagrams
+
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}} %adds numbers to specific equations in non-numbered list of equations
+
+\newcommand{\AxisRotator}[1][rotate=0]{
+	\tikz [x=0.25cm,y=0.60cm,line width=.2ex,-stealth,#1] \draw (0,0) arc (-150:150:1 and 1);%
+} %rotation symbols on axes
+
+\theoremstyle{definition}
+\newtheorem{example}{Example}
+\newtheorem{definition}{Definition}
+
+\theoremstyle{theorem}
+\newtheorem{theorem}{Theorem}
+
+\renewcommand{\Re}{\mathrm{Re}}
+\renewcommand{\Im}{\mathrm{Im}}
+
+\DeclareMathOperator{\Arg}{Arg}
+
+\DeclareMathOperator{\Int}{Int}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\boundary}{\partial}
+
+\DeclareMathOperator{\Log}{Log}
+
+\makeatletter
+\@addtoreset{section}{part} %resets section numbers in new part
+\makeatother
+
+\renewcommand{\thesubsection}{(\arabic{subsection})}
+\renewcommand{\thesection}{(\arabic{section})}
+
+%section headings on left
+\makeatletter
+\def\specialsection{\@startsection{section}{1}%
+	\z@{\linespacing\@plus\linespacing}{.5\linespacing}%
+	%  {\normalfont\centering}}% DELETED
+	{\normalfont}}% NEW
+\def\section{\@startsection{section}{1}%
+	\z@{.7\linespacing\@plus\linespacing}{.5\linespacing}%
+	%  {\normalfont\scshape\centering}}% DELETED
+	{\normalfont\scshape}}% NEW
+\makeatother
+
+%forces newline after subsection
+\makeatletter
+\def\subsection{\@startsection{subsection}{3}%
+	\z@{.5\linespacing\@plus.7\linespacing}{.1\linespacing}%
+	{\normalfont\itshape}}
+\makeatother
+
+\settasks{counter-format = tsk[1].}
+
+\SetupExSheets{solution/print = true}
+
+%opening
+\title{Complex Functions : Assignment 5}
+\author
+{
+	Aakash Jog\\
+	ID : 989323563
+}
+\date{\formatdate{25}{11}{2015}}
+
+\begin{document}
+
+\tikzset{->-/.style={decoration={
+  markings,
+  mark=at position #1 with {\arrow{>}}},postaction={decorate}}}
+
+\maketitle
+%\setlength{\mathindent}{0pt}
+
+\setcounter{question}{0}
+\begin{question}
+	Prove
+	\begin{enumerate}
+		\item $(\sin z)' = \cos z$
+		\item $(\cos z)' = -\sin z$
+	\end{enumerate}
+\end{question}
+
+\begin{solution}
+	\begin{enumerate}[leftmargin=*]
+		\item
+			\begin{align*}
+				\sin z & = \frac{e^{i \Arg z} - e^{-i \Arg z}}{2 i}
+			\end{align*}
+			Therefore,
+			\begin{align*}
+				(\sin z)' & = \left( \frac{e^{i \Arg z} - e^{-i \Arg z}}{2 i} \right)' \\
+                                          & = \frac{i e^{i \Arg z} + i e^{i \Arg z}}{2 i}              \\
+                                          & = \frac{e^{i \Arg z} + e^{i \Arg z}}{2}                    \\
+                                          & = \cos z
+			\end{align*}
+		\item
+			\begin{align*}
+				\cos z & = \frac{e^{i \Arg z} + e^{-i \Arg z}}{2}
+			\end{align*}
+			Therefore,
+			\begin{align*}
+				(\cos z)' & = \left( \frac{e^{i \Arg z} + e^{-i \Arg z}}{2} \right)' \\
+                                          & = \frac{i e^{i \Arg z} - i e^{-i \Arg z}}{2}             \\
+                                          & = -\frac{e^{i \Arg z} + e^{i \Arg z}}{2 i}               \\
+                                          & = -\sin z
+			\end{align*}
+	\end{enumerate}
+\end{solution}
+
+\setcounter{question}{2}
+\begin{question}
+	Calculate
+	\begin{enumerate}
+		\setcounter{enumi}{2}
+		\item $\mathrm{pv}\left( (1 - i)^{4 i} \right)$
+		\item $(-1)^i$
+	\end{enumerate}
+\end{question}
+
+\begin{solution}
+	\begin{enumerate}[leftmargin=*]
+		\setcounter{enumi}{2}
+		\item
+			\begin{align*}
+				\mathrm{pv}\left( (1 - i)^{4 i} \right) & = \Log_{-\pi}\left( (1 - i)^{4 i} \right)                                  \\
+                                                                        & = \Log\left( (1 - i)^{4 i} \right)                                         \\
+                                                                        & = \Log\left( e^{4 i \Log(1 - i)} \right)                                   \\
+                                                                        & = \Log\left( e^{4 i \left( \ln|1 - i| + i \Arg(1 - i) \right)} \right)     \\
+                                                                        & = \Log\left( e^{4 i \left( \ln \sqrt{2} - i \frac{\pi}{2} \right)} \right) \\
+                                                                        & = 4 i \left( \ln \sqrt{2} - i \frac{\pi}{2} \right)                        \\
+                                                                        & = 4 i \left( \frac{\ln 2}{2} - i \frac{\pi}{2} \right)                     \\
+                                                                        & = 2 i \ln 2 + 2 \pi
+			\end{align*}
+		\item
+			\begin{align*}
+				(-1)^i & = i^{2 i}                                               \\
+                                       & = \left( i^i \right)^2                                  \\
+                                       & = \left( \left( e^{i \frac{\pi}{2}} \right)^i \right)^2 \\
+                                       & = \left( e^{i^2 \frac{\pi}{2}} \right)^2                \\
+                                       & = \left( e^{-\frac{\pi}{2}} \right)^2                   \\
+                                       & = e^{-\pi}                                              \\
+                                       & = -1
+			\end{align*}
+	\end{enumerate}
+\end{solution}
+
+\setcounter{question}{3}
+\begin{question}
+	Show that
+	\begin{align*}
+		\Log (1 + i)^2 & = 2 \Log(1 + i)
+	\end{align*}
+\end{question}
+
+\begin{solution}
+	\begin{align*}
+		\Log (1 + i)^2 & = \ln\left| (1 + i)^2 \right| + i \Arg\left( (1 + i)^2 \right)     \\
+                               & = \ln\left| 1 + 2 i - 1 \right| + i \Arg\left( 1 + 2 i - 1 \right) \\
+                               & = \ln|2 i| + i \Arg(2 i)                                           \\
+                               & = \ln 2 + i \frac{\pi}{2}                                          \\
+                               & = 2 \left( \ln\left| \sqrt{2} \right| + i \frac{\pi}{4} \right)    \\
+                               & = 2 \left( \ln|1 + i| + i \Arg(1 + i) \right)                      \\
+                               & = 2 \Log(1 + i)
+	\end{align*}
+	\qed
+\end{solution}
+
+\setcounter{question}{4}
+\begin{question}
+	In class we showed that
+	\begin{align*}
+		\dod{\Log z}{z} & = \frac{1}{z}
+	\end{align*}
+	using the polar Cauchy-Riemann equations.
+	Prove it again using the chain rule and the fact that $z = e^{\Log z}$.
+\end{question}
+
+\begin{solution}
+	\begin{align*}
+		\dod{e^{\Log z}}{z}        & = \dod{e^{\Log z}}{\Log z} \dod{\Log z}{z} \\
+		\therefore \dod{z}{z}      & = e^{\Log z} \dod{\Log z}{z}               \\
+		\therefore 1               & = e^{\Log z} \dod{\Log z}{z}               \\
+                                           & = z \dod{\Log z}{z}                        \\
+		\therefore \dod{\Log z}{z} & = \frac{1}{z}
+	\end{align*}
+	\qed
+\end{solution}
+
+\end{document}
