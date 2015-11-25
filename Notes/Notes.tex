@@ -55,6 +55,9 @@
 	{%
 	    % nothing to be done here
 	}
+\usepackage{todonotes}
+%\usepackage{syntonly}
+%\syntaxonly
 
 \newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}} %adds numbers to specific equations in non-numbered list of equations
 
@@ -66,15 +69,17 @@
 \newtheorem{theorem}{Theorem}
 \newtheorem{law}{Law}
 
-\newcommand{\curl}{\mathrm{curl\,}}
+%\renewcommand{\Re}{\mathrm{Re}}
+%\renewcommand{\Im}{\mathrm{Im}}
 
-\newcommand{\divergence}{\mathrm{div\,}}
+\DeclareMathOperator{\Arg}{Arg}
 
-\newcommand{\Arg}{\mathrm{Arg}}
+\DeclareMathOperator{\Int}{Int}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\boundary}{\partial}
 
-\newcommand{\Int}{\mathrm{Int}}
-\newcommand{\Ext}{\mathrm{Ext}}
-\newcommand{\boundary}{\partial}
+%\newcommand{\Log}{\mathrm{Log}}
+\DeclareMathOperator{\Log}{Log}
 
 \makeatletter
 \@addtoreset{section}{part} %resets section numbers in new part
@@ -852,6 +857,11 @@ Then, $\theta$, such that $\theta \in (-\pi,\pi]$, and
 	If $(u,v)$ satisfying \nameref{Cauchy-Riemann_Equations} at $(a,b)$ then $f'(z_0)$ exists.
 \end{theorem}
 
+\begin{definition}[Harmonic conjugate]
+	Let $u : \mathbb{R}^2 \to \mathbb{R}$ be a harmonic function.
+	Its harmonic conjugate is defined to be $v : \mathbb{R}^2 \to \mathbb{R}$, such that $f = u + i v$ is analytic.
+\end{definition}
+
 \section{Analytic Functions}
 
 \begin{definition}
@@ -881,6 +891,8 @@ Then, $\theta$, such that $\theta \in (-\pi,\pi]$, and
 
 \section{Elementary Functions}
 
+\subsection{Exponential Functions}
+
 \begin{theorem}
 	\begin{align*}
 		\left| e^z \right| & = e^{\Re(z)}
@@ -895,6 +907,27 @@ Then, $\theta$, such that $\theta \in (-\pi,\pi]$, and
 	\end{align*}
 \end{proof}
 
+\begin{theorem}
+	Let $z$ and $w$ be complex.
+	Then
+	\begin{align*}
+		e^{z + w} &= e^z e^w
+	\end{align*}
+\end{theorem}
+
+\begin{theorem}
+	$\forall n \in \mathbb{Z}$,
+	\begin{align*}
+		\left( e^z \right)^n &= e^{n z}
+	\end{align*}
+\end{theorem}
+
+\begin{theorem}
+	The function $e^z$ is onto with respect to $\mathbb{C} \setminus \{0\}$.
+\end{theorem}
+
+\subsection{Trigonometric Functions}
+
 \begin{definition}[Trigonometric functions of complex numbers]
 	Trigonometric functions of complex numbers are defined as
 	\begin{align*}
@@ -905,9 +938,128 @@ Then, $\theta$, such that $\theta \in (-\pi,\pi]$, and
 	\end{align*}
 \end{definition}
 
-\begin{definition}[Harmonic conjugate]
-	Let $u : \mathbb{R}^2 \to \mathbb{R}$ be a harmonic function.
-	Its harmonic conjugate is defined to be $v : \mathbb{R}^2 \to \mathbb{R}$, such that $f = u + i v$ is analytic.
+\subsection{Logarithmic Functions}
+
+\begin{definition}[Power set]
+	The set of all subsets of a set is called the power set of the set.
+	The power set of a set $A$ is denoted as $\mathrm{P}(A)$.
 \end{definition}
+
+\begin{definition}[Multiple valued function]
+	\marginnote
+	{
+		A multiple valued function gets over $\mathbb{C}$ gets a complex number as input and returns a set of complex numbers as output.
+	}
+	A set which maps a set $A$ to its power set $\mathrm{P}(A)$ is called a multiple valued set.
+\end{definition}
+
+\begin{definition}[Natural logarithmic function]
+	The natural logarithmic function over the complex plane is defined to be
+	\begin{align*}
+		\log w &= \left\{ z : e^z = w \right\}
+	\end{align*}
+\end{definition}
+
+\begin{theorem}
+	\begin{align*}
+		\log w &= \ln |w| + i \arg(w)
+	\end{align*}
+\end{theorem}
+
+\begin{proof}
+	Let
+	\begin{align*}
+		e^z &= w\\
+		&= |w| e^{i \theta}
+	\end{align*}
+	where
+	\begin{align*}
+		\theta &= \arg(w)
+	\end{align*}
+	Therefore,
+	\begin{align*}
+		e^{\Re(z) + i \Im(z)} &= |w| e^{i \theta}\\
+		\therefore e^{\Re(z)} e^{i \Im(z)} &= |w| e^{i \theta}
+	\end{align*}
+	Therefore,
+	\begin{align*}
+		e^{\Re(z)} &= |w|\\
+		\Im(z) &= \theta + 2 \pi k
+	\end{align*}
+	where $k \in \mathbb{Z}$.\\
+	Therefore,
+	\begin{align*}
+		\ln e^{\Re(z)} &= \ln |w|\\
+		\therefore \Re(z) &= \ln |w|
+	\end{align*}
+	Therefore,
+	\begin{align*}
+		\log w &= \left\{ z : e^z = w \right\}\\
+		&= \left\{ \ln |w| + i y : y = \arg(w) \right\}
+	\end{align*}
+	For any $w \in \log z$,
+	\begin{align*}
+		e^w &= e^{\ln |z|} + i \left( \Arg z + 2 \pi k \right)\\
+		&= e^{\ln |z|} e^{i \left( \Arg z + 2 \pi k \right)}\\
+		&= |z| e^{i \Arg z}\\
+		&= z
+	\end{align*}
+\end{proof}
+
+\begin{definition}[Branch of $\log z$]
+	A branch of $\log z$ is a continuous function $\mathrm{L}(z)$ defined on a $U$, a connected open subset of $\mathbb{C}$ such that $\mathrm{L}(z)$ is a logarithm of $z$ for each $z \in U$.
+\end{definition}
+
+\begin{definition}[$\Log z$]
+	$\Log z$ is defined to be
+	\begin{align*}
+		\Log z &= \ln |z| + i \Arg z
+	\end{align*}
+\end{definition}
+
+As $\Arg z$ is not continuous on the negative real axis, in order to make it continuous, the line $\Arg z = \pi$ is excluded.
+Hence, $\log z$ is continuous on $U = \mathbb{C} \setminus \{0\} \cup \mathbb{R}^-$, and is a branch of $\log z$.\\
+Similarly, any other ray can be excluded in order to get a branch of $\log z$.\\
+
+\begin{definition}
+	For any $\alpha \in \mathbb{R}$, $\Log_{\alpha} z$ is defined to be
+	\begin{align*}
+		\Log_{\alpha} z &= \ln |z| + i \Arg_{\alpha} z
+	\end{align*}
+	where $\Arg_{\alpha} z = \theta$, such that $\theta \in (\alpha , \alpha + 2 \pi]$ and $\theta = \arg z$.\\
+	Any choice of $\Arg_{\alpha} z$ defines a branch of logarithm.
+\end{definition}
+
+\begin{definition}[Branch cut]]
+	The boundary of the domain of a branch is called a branch cut.
+\end{definition}
+
+\begin{definition}[Principle value]
+	The value returned by $\Log z = \Log_{-\pi} z$ is called the principle value.
+\end{definition}
+
+\begin{theorem}
+	$\Log z$ is analytic on $\mathbb{C} \setminus \{0\} \cup \mathbb{R}^-$.
+\end{theorem}
+
+\subsection{Power}
+
+\begin{definition}[Power function]
+	Let $z,c \in \mathbb{C}$, such that $z \neq 0$.
+	The power multifunction as
+	\begin{align*}
+		z^c &= e^{c \log z}
+	\end{align*}
+	The branch of the power multifunction for $c \in \mathbb{C}$ is defined as
+	\begin{align*}
+		z^w &= e^{w \log z}
+	\end{align*}
+\end{definition}
+
+\begin{theorem}
+	\begin{align*}
+		\Log_{\alpha} z - \Log_{\beta} z &= i \left( \Arg_{\alpha} z - \Arg_{\beta} z \right)
+	\end{align*}
+\end{theorem}
 
 \end{document}
