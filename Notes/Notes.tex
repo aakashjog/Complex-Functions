@@ -78,8 +78,8 @@
 \DeclareMathOperator{\Ext}{Ext}
 \DeclareMathOperator{\boundary}{\partial}
 
-%\newcommand{\Log}{\mathrm{Log}}
 \DeclareMathOperator{\Log}{Log}
+\DeclareMathOperator{\pv}{pv}
 
 \makeatletter
 \@addtoreset{section}{part} %resets section numbers in new part
@@ -390,7 +390,7 @@ Then, $\theta$, such that $\theta \in (-\pi,\pi]$, and
                                                                     & = -\pi
 	\end{align*}
 	Therefore, as the limit of two subsequences are not equal, the limit does not exist.
-\end{solution}<++>
+\end{solution}
 
 \newpage
 \part{Topology on the Complex Plane}
@@ -889,6 +889,102 @@ Then, $\theta$, such that $\theta \in (-\pi,\pi]$, and
 	Then, $u$ is constant in $D$.
 \end{theorem}
 
+\begin{question}
+	\begin{enumerate}
+		\item
+			Prove that
+			\begin{align*}
+				v(x,y) & = \ln\left( (x - 1)^2 + (y - 2)^2 \right)
+			\end{align*}
+			is harmonic in any domain that does not include the point $(1,2)$.
+		\pause
+		\item
+			Find $u(x,y)$ such that $u + i v$ is analytic in some domain.
+			Note: $v$ is the conjugate harmonic of $u$.
+		\pause
+		\item
+			Express $u + i v$ as a function of $z$.
+	\end{enumerate}
+\end{question}
+
+\begin{solution}
+	\begin{enumerate}[leftmargin=*]
+		\item
+			\begin{align*}
+				v_x & = \frac{2 (x - 1)}{(x - 1)^2 + (y - 2)^2} \\
+				v_y & = \frac{2 (y - 2)}{(x - 1)^2 + (y - 2)^2}
+			\end{align*}
+			\pause
+			Therefore,
+			\begin{align*}
+				v_{x x} & = \frac{2 \left( (x - 1)^2 + (y - 2)^2 \right) - \left( 2 (x - 1) \right)^2}{\left( (x - 1)^2 + (y - 2)^2 \right)^2} \\
+				v_{y y} & = \frac{2 \left( (x - 1)^2 + (y - 2)^2 \right) - \left( 2 (y - 2) \right)^2}{\left( (x - 1)^2 + (y - 2)^2 \right)^2}
+			\end{align*}
+		\item
+			For $u + i v$ to be analytic, by \nameref{Cauchy-Riemann_Equations},
+			\begin{align*}
+				u_x & = v_y \\
+				u_y & = -v_x
+			\end{align*}
+			Therefore,
+			\begin{align*}
+				u_x & = v_y \\
+                                    & = \frac{2 (y - 2)}{(x - 1)^2 + (y - 2)^2}
+			\end{align*}
+			Therefore,
+			\begin{align*}
+				u & = \int \frac{2 (y - 2)}{(x - 1)^2 + (y - 2)^2} \dif x                                        \\
+                                  & = \frac{2 (y - 2)}{(y - 2)^2} \int \frac{1}{1 + \left( \frac{x - 1}{y - 2} \right)^2} \dif x \\ \
+                                  & = 2 \tan^{-1}\left( \frac{x - 1}{y - 2} \right) + g(y)
+			\end{align*}
+			Therefore,
+			\begin{align*}
+				u_y                                                 & = -v_x \\
+				\therefore -\frac{2 (x - 1)}{(x - 1)^2 + (y - 2)^2} & = \frac{2}{1 + \frac{(x - 1)^2}{(y - 2)^2}} \left( -\frac{x - 1}{y - 2} \right) + g'(y)
+			\end{align*}
+			Therefore,
+			\begin{align*}
+				g'(y)           & = 0 \\
+				\therefore g(y) & = c
+			\end{align*}
+			Therefore,
+			\begin{align*}
+				u & = 2 \tan^{-1}\left( \frac{x - 1}{y - 2} \right) + c
+			\end{align*}
+		\item
+			\begin{align*}
+				u + i v & = \tan^{-1}\left( \frac{x - 1}{y - 2} \right) + i \ln\left( (x - 1)^2 + (y - 2)^2 \right) \\
+                                        & = 2 i \Log\left( -i (x - 1) + (y - 2) \right)                                             \\
+                                        & = 2 i \Log\left( -i z - 2 + i \right)
+			\end{align*}
+	\end{enumerate}
+\end{solution}
+
+\begin{question}
+	Prove that there is no $f = u + i v$ analytic in the unit disk, such that
+	\begin{align*}
+		x u(x,y) & = y v(x,y) + 2013
+	\end{align*}
+	Hint: Use the function $z f(z)$.
+\end{question}
+
+\begin{solution}
+	If possible, let there exist $f(z)$ such that
+	\begin{align*}
+		x u(x,y) & = y v(x,y) + 2013
+	\end{align*}
+	Therefore, as $z f(z)$ is analytic,
+	\begin{align*}
+		z f(z) & = (x + i y) (u + i v)       \\
+                       & = x u - y v + i (y u + x v) \\
+                       & = 2013 + i (y u + x v)
+	\end{align*}
+	By the polar form of \nameref{Cauchy-Riemann_Equations}, $y u + x v$ is constant.\\
+	Therefore, $z f(z)$ is constant.\\
+	Therefore, this contradicts the assumption.\\
+	Therefore, such a $f$ does not exist.
+\end{solution}
+
 \section{Elementary Functions}
 
 \subsection{Exponential Functions}
@@ -1042,6 +1138,19 @@ Similarly, any other ray can be excluded in order to get a branch of $\log z$.\\
 	$\Log z$ is analytic on $\mathbb{C} \setminus \{0\} \cup \mathbb{R}^-$.
 \end{theorem}
 
+\begin{question}
+	Find the principal value of $\sqrt{i}$.
+\end{question}
+
+\begin{solution}
+	\begin{align*}
+		\pv\left( i^{\frac{1}{2}} \right) &= e^{\frac{1}{2} \Log i}\\
+		&= e^{\frac{1}{2} \left( \ln|i| + i \Arg i \right)}\\
+		&= e^{\frac{1}{2} i \frac{\pi}{2}}\\
+		&= e^{i \frac{\pi}{4}}
+	\end{align*}
+\end{solution}
+
 \subsection{Power}
 
 \begin{definition}[Power function]
@@ -1061,5 +1170,137 @@ Similarly, any other ray can be excluded in order to get a branch of $\log z$.\\
 		\Log_{\alpha} z - \Log_{\beta} z &= i \left( \Arg_{\alpha} z - \Arg_{\beta} z \right)
 	\end{align*}
 \end{theorem}
+
+\newpage
+\part{Complex Integrals}
+
+\section{Complex Integrals}
+
+\begin{definition}[Integral of complex functions]
+	Let $f : [a,b] \to \mathbb{C}$.
+	Let
+	\begin{align*}
+		f(t) &= u(t) + i v(t)
+	\end{align*}
+	Therefore, the integrals of $u(t)$ and $v(t)$ are defined as
+	\begin{align*}
+		\int\limits_{a}^{b} u(t) \dif t &= \lim\limits_{\Delta t \to 0} \sum\limits_{i = 1}^{n} u(t_i) \Delta x_i
+	\end{align*}
+	where $T$ is a splitting of $[a,b]$, such that
+	\begin{equation*}
+		a = t_1 < \dots < t_n = b
+	\end{equation*}
+	and
+	\begin{align*}
+		\int\limits_{a}^{b} v(t) \dif t &= \lim\limits_{\Delta t \to 0} \sum\limits_{i = 1}^{n} v(t_i) \Delta x_i
+	\end{align*}
+	where $T$ is a splitting of $[a,b]$, such that
+	\begin{equation*}
+		a = t_1 < \dots < t_n = b
+	\end{equation*}
+	These integrals are defined when the limit exists without depending on $T$.\\
+	When they exist, the integral of $f(t)$ is defined as
+	\begin{align*}
+		\int\limits_{a}^{b} f(t) \dif t &= \int\limits_{a}^{b} u(t) \dif t + i \int\limits_{a}^{b} v(t) \dif t
+	\end{align*}
+\end{definition}
+
+\begin{theorem}
+	All properties of real integrals are also valid for complex integrals.
+\end{theorem}
+
+\begin{theorem}
+	\begin{align*}
+		\left| \int\limits_{a}^{b} f(t) \dif t \right| &\le \int\limits_{a}^{b} \left| f(t) \right| \dif t
+	\end{align*}
+\end{theorem}
+
+\section{Curves in $\mathbb{C}$}
+
+\begin{definition}
+	A continuous function $\gamma : [a,b] \to \mathbb{C}$ is called a curve.
+\end{definition}
+
+\begin{definition}[Parametric representation of a curve]
+	The curve $\gamma(t)$ can be represented as
+	\begin{align*}
+		\gamma(t) &= x(t) + i y(t)
+	\end{align*}
+	where $t$ is a parameter.\\
+\end{definition}
+
+\begin{definition}[Differentiability]
+	$\gamma$ is said to be differentiable if $x$ and $y$ are both differentiable.
+\end{definition}
+
+\begin{theorem}[Parametric representation of a straight line]
+	Let $z_1,z_2 \in \mathbb{C}$.
+	The straight line passing through $z_1$ and $z_2$ can represented parametrically as
+	\begin{align*}
+		\gamma(t) &= z_1 + t (z_2 - z_1)
+	\end{align*}
+	The slope of this line is $z_1 - z_2$.
+\end{theorem}
+
+\begin{theorem}[Parametric representation of a circle]
+	A circle with radius $r$, centred at the origin, can be represented parametrically as
+	\begin{align*}
+		\gamma(t) &= r e^{i t}
+	\end{align*}
+	with $0 \le t \le 2 \pi$.
+\end{theorem}
+
+\begin{question}
+	Parametrize the curve ${\left\{ z = x + i y : \frac{x^2}{4} + y^2 = 1 \right\}}$ starting from 2, and going anti-clockwise twice.
+\end{question}
+
+\begin{solution}
+	The curve is an ellipse centred at $(0,0)$, with $a = 2$, and $b = 1$.
+	\begin{align*}
+		\gamma(t) &= 2 \cos t + i \sin t
+	\end{align*}
+	Therefore, as the curve goes anti-clockwise twice, $t \in [0,4 \pi]$.
+\end{solution}
+
+\begin{definition}[Simple curve]
+	A curve $\gamma$ is said to be simple if it is non self-intersecting, i.e. it is one-to-one with respect to the parameter $t$, except maybe at the extreme values of $t$.
+\end{definition}
+
+\begin{definition}[Closed curve]
+	A curve $\gamma : [a,b] \to \mathbb{C}$ is said to be closed, if and only if
+	\begin{align*}
+		\gamma(a) &= \gamma(b)
+	\end{align*}
+\end{definition}
+
+\begin{definition}[Jordan curve]
+	A closed simple curve is called a Jordan curve.
+\end{definition}
+
+\begin{theorem}
+	A Jordan curve enclosed a region inside it.
+\end{theorem}
+
+\begin{definition}[Piecewise differentiability]
+	$\gamma$ is said to be piecewise differentiable if there exists a splitting
+	\begin{equation*}
+		a = t_1 < \dots < t_n = b
+	\end{equation*}
+	such that $\gamma$ is differentiable on each segment $[t_i,t_{i + 1}]$.
+\end{definition}
+
+\section{Complex Line Integrals}
+
+\begin{definition}[Complex line integral]
+	Let $\gamma : [a,b] \to \mathbb{C}$ be a curve, and let $f : D \to \mathbb{C}$, where $D \subseteq \mathbb{C}$, and $\gamma\left( [a,b] \right) \subset D$.
+	Then, the integral
+	\begin{align*}
+		\int\limits_{\gamma} f(z) \dif z &= \int\limits_{a}^{b} f\left( \gamma(t) \right) \dot{\gamma}(t) \dif t
+	\end{align*}
+	If $\gamma$ is piecewise differentiable, then
+	\begin{align*}
+		\int\limits_{\gamma} f(z) \dif z &= \sum\limits_{i = 1}^{n} \int\limits_{x_i}^{x_{i + 1}} f\left( \gamma(t) \right) \dot{\gamma}(t) \dif t
+	\end{align*}
+\end{definition}
 
 \end{document}
