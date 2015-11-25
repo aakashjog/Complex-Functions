@@ -897,11 +897,9 @@ Then, $\theta$, such that $\theta \in (-\pi,\pi]$, and
 				v(x,y) & = \ln\left( (x - 1)^2 + (y - 2)^2 \right)
 			\end{align*}
 			is harmonic in any domain that does not include the point $(1,2)$.
-		\pause
 		\item
 			Find $u(x,y)$ such that $u + i v$ is analytic in some domain.
 			Note: $v$ is the conjugate harmonic of $u$.
-		\pause
 		\item
 			Express $u + i v$ as a function of $z$.
 	\end{enumerate}
@@ -914,7 +912,6 @@ Then, $\theta$, such that $\theta \in (-\pi,\pi]$, and
 				v_x & = \frac{2 (x - 1)}{(x - 1)^2 + (y - 2)^2} \\
 				v_y & = \frac{2 (y - 2)}{(x - 1)^2 + (y - 2)^2}
 			\end{align*}
-			\pause
 			Therefore,
 			\begin{align*}
 				v_{x x} & = \frac{2 \left( (x - 1)^2 + (y - 2)^2 \right) - \left( 2 (x - 1) \right)^2}{\left( (x - 1)^2 + (y - 2)^2 \right)^2} \\
@@ -1052,53 +1049,53 @@ Then, $\theta$, such that $\theta \in (-\pi,\pi]$, and
 \begin{definition}[Natural logarithmic function]
 	The natural logarithmic function over the complex plane is defined to be
 	\begin{align*}
-		\log w &= \left\{ z : e^z = w \right\}
+		\log w & = \left\{ z : e^z = w \right\}
 	\end{align*}
 \end{definition}
 
 \begin{theorem}
 	\begin{align*}
-		\log w &= \ln |w| + i \arg(w)
+		\log w & = \ln |w| + i \arg(w)
 	\end{align*}
 \end{theorem}
 
 \begin{proof}
 	Let
 	\begin{align*}
-		e^z &= w\\
-		&= |w| e^{i \theta}
+		e^z & = w \\
+                    & = |w| e^{i \theta}
 	\end{align*}
 	where
 	\begin{align*}
-		\theta &= \arg(w)
+		\theta & = \arg(w)
 	\end{align*}
 	Therefore,
 	\begin{align*}
-		e^{\Re(z) + i \Im(z)} &= |w| e^{i \theta}\\
-		\therefore e^{\Re(z)} e^{i \Im(z)} &= |w| e^{i \theta}
+		e^{\Re(z) + i \Im(z)}              & = |w| e^{i \theta} \\
+		\therefore e^{\Re(z)} e^{i \Im(z)} & = |w| e^{i \theta}
 	\end{align*}
 	Therefore,
 	\begin{align*}
-		e^{\Re(z)} &= |w|\\
-		\Im(z) &= \theta + 2 \pi k
+		e^{\Re(z)} & = |w| \\
+		\Im(z)     & = \theta + 2 \pi k
 	\end{align*}
 	where $k \in \mathbb{Z}$.\\
 	Therefore,
 	\begin{align*}
-		\ln e^{\Re(z)} &= \ln |w|\\
-		\therefore \Re(z) &= \ln |w|
+		\ln e^{\Re(z)}    & = \ln |w| \\
+		\therefore \Re(z) & = \ln |w|
 	\end{align*}
 	Therefore,
 	\begin{align*}
-		\log w &= \left\{ z : e^z = w \right\}\\
-		&= \left\{ \ln |w| + i y : y = \arg(w) \right\}
+		\log w & = \left\{ z : e^z = w \right\} \\
+                       & = \left\{ \ln |w| + i y : y = \arg(w) \right\}
 	\end{align*}
 	For any $w \in \log z$,
 	\begin{align*}
-		e^w &= e^{\ln |z|} + i \left( \Arg z + 2 \pi k \right)\\
-		&= e^{\ln |z|} e^{i \left( \Arg z + 2 \pi k \right)}\\
-		&= |z| e^{i \Arg z}\\
-		&= z
+		e^w & = e^{\ln |z|} + i \left( \Arg z + 2 \pi k \right)   \\
+                    & = e^{\ln |z|} e^{i \left( \Arg z + 2 \pi k \right)} \\
+                    & = |z| e^{i \Arg z}                                  \\
+                    & = z
 	\end{align*}
 \end{proof}
 
@@ -1109,7 +1106,7 @@ Then, $\theta$, such that $\theta \in (-\pi,\pi]$, and
 \begin{definition}[$\Log z$]
 	$\Log z$ is defined to be
 	\begin{align*}
-		\Log z &= \ln |z| + i \Arg z
+		\Log z & = \ln |z| + i \Arg z
 	\end{align*}
 \end{definition}
 
@@ -1120,7 +1117,7 @@ Similarly, any other ray can be excluded in order to get a branch of $\log z$.\\
 \begin{definition}
 	For any $\alpha \in \mathbb{R}$, $\Log_{\alpha} z$ is defined to be
 	\begin{align*}
-		\Log_{\alpha} z &= \ln |z| + i \Arg_{\alpha} z
+		\Log_{\alpha} z & = \ln |z| + i \Arg_{\alpha} z
 	\end{align*}
 	where $\Arg_{\alpha} z = \theta$, such that $\theta \in (\alpha , \alpha + 2 \pi]$ and $\theta = \arg z$.\\
 	Any choice of $\Arg_{\alpha} z$ defines a branch of logarithm.
@@ -1144,10 +1141,10 @@ Similarly, any other ray can be excluded in order to get a branch of $\log z$.\\
 
 \begin{solution}
 	\begin{align*}
-		\pv\left( i^{\frac{1}{2}} \right) &= e^{\frac{1}{2} \Log i}\\
-		&= e^{\frac{1}{2} \left( \ln|i| + i \Arg i \right)}\\
-		&= e^{\frac{1}{2} i \frac{\pi}{2}}\\
-		&= e^{i \frac{\pi}{4}}
+		\pv\left( i^{\frac{1}{2}} \right) & = e^{\frac{1}{2} \Log i}                           \\
+                                                  & = e^{\frac{1}{2} \left( \ln|i| + i \Arg i \right)} \\
+                                                  & = e^{\frac{1}{2} i \frac{\pi}{2}}                  \\
+                                                  & = e^{i \frac{\pi}{4}}
 	\end{align*}
 \end{solution}
 
@@ -1157,17 +1154,17 @@ Similarly, any other ray can be excluded in order to get a branch of $\log z$.\\
 	Let $z,c \in \mathbb{C}$, such that $z \neq 0$.
 	The power multifunction as
 	\begin{align*}
-		z^c &= e^{c \log z}
+		z^c & = e^{c \log z}
 	\end{align*}
 	The branch of the power multifunction for $c \in \mathbb{C}$ is defined as
 	\begin{align*}
-		z^w &= e^{w \log z}
+		z^w & = e^{w \log z}
 	\end{align*}
 \end{definition}
 
 \begin{theorem}
 	\begin{align*}
-		\Log_{\alpha} z - \Log_{\beta} z &= i \left( \Arg_{\alpha} z - \Arg_{\beta} z \right)
+		\Log_{\alpha} z - \Log_{\beta} z & = i \left( \Arg_{\alpha} z - \Arg_{\beta} z \right)
 	\end{align*}
 \end{theorem}
 
@@ -1180,11 +1177,11 @@ Similarly, any other ray can be excluded in order to get a branch of $\log z$.\\
 	Let $f : [a,b] \to \mathbb{C}$.
 	Let
 	\begin{align*}
-		f(t) &= u(t) + i v(t)
+		f(t) & = u(t) + i v(t)
 	\end{align*}
 	Therefore, the integrals of $u(t)$ and $v(t)$ are defined as
 	\begin{align*}
-		\int\limits_{a}^{b} u(t) \dif t &= \lim\limits_{\Delta t \to 0} \sum\limits_{i = 1}^{n} u(t_i) \Delta x_i
+		\int\limits_{a}^{b} u(t) \dif t & = \lim\limits_{\Delta t \to 0} \sum\limits_{i = 1}^{n} u(t_i) \Delta x_i
 	\end{align*}
 	where $T$ is a splitting of $[a,b]$, such that
 	\begin{equation*}
@@ -1192,7 +1189,7 @@ Similarly, any other ray can be excluded in order to get a branch of $\log z$.\\
 	\end{equation*}
 	and
 	\begin{align*}
-		\int\limits_{a}^{b} v(t) \dif t &= \lim\limits_{\Delta t \to 0} \sum\limits_{i = 1}^{n} v(t_i) \Delta x_i
+		\int\limits_{a}^{b} v(t) \dif t & = \lim\limits_{\Delta t \to 0} \sum\limits_{i = 1}^{n} v(t_i) \Delta x_i
 	\end{align*}
 	where $T$ is a splitting of $[a,b]$, such that
 	\begin{equation*}
@@ -1201,7 +1198,7 @@ Similarly, any other ray can be excluded in order to get a branch of $\log z$.\\
 	These integrals are defined when the limit exists without depending on $T$.\\
 	When they exist, the integral of $f(t)$ is defined as
 	\begin{align*}
-		\int\limits_{a}^{b} f(t) \dif t &= \int\limits_{a}^{b} u(t) \dif t + i \int\limits_{a}^{b} v(t) \dif t
+		\int\limits_{a}^{b} f(t) \dif t & = \int\limits_{a}^{b} u(t) \dif t + i \int\limits_{a}^{b} v(t) \dif t
 	\end{align*}
 \end{definition}
 
@@ -1211,7 +1208,7 @@ Similarly, any other ray can be excluded in order to get a branch of $\log z$.\\
 
 \begin{theorem}
 	\begin{align*}
-		\left| \int\limits_{a}^{b} f(t) \dif t \right| &\le \int\limits_{a}^{b} \left| f(t) \right| \dif t
+		\left| \int\limits_{a}^{b} f(t) \dif t \right| & \le \int\limits_{a}^{b} \left| f(t) \right| \dif t
 	\end{align*}
 \end{theorem}
 
@@ -1224,7 +1221,7 @@ Similarly, any other ray can be excluded in order to get a branch of $\log z$.\\
 \begin{definition}[Parametric representation of a curve]
 	The curve $\gamma(t)$ can be represented as
 	\begin{align*}
-		\gamma(t) &= x(t) + i y(t)
+		\gamma(t) & = x(t) + i y(t)
 	\end{align*}
 	where $t$ is a parameter.\\
 \end{definition}
@@ -1237,7 +1234,7 @@ Similarly, any other ray can be excluded in order to get a branch of $\log z$.\\
 	Let $z_1,z_2 \in \mathbb{C}$.
 	The straight line passing through $z_1$ and $z_2$ can represented parametrically as
 	\begin{align*}
-		\gamma(t) &= z_1 + t (z_2 - z_1)
+		\gamma(t) & = z_1 + t (z_2 - z_1)
 	\end{align*}
 	The slope of this line is $z_1 - z_2$.
 \end{theorem}
@@ -1245,7 +1242,7 @@ Similarly, any other ray can be excluded in order to get a branch of $\log z$.\\
 \begin{theorem}[Parametric representation of a circle]
 	A circle with radius $r$, centred at the origin, can be represented parametrically as
 	\begin{align*}
-		\gamma(t) &= r e^{i t}
+		\gamma(t) & = r e^{i t}
 	\end{align*}
 	with $0 \le t \le 2 \pi$.
 \end{theorem}
@@ -1257,7 +1254,7 @@ Similarly, any other ray can be excluded in order to get a branch of $\log z$.\\
 \begin{solution}
 	The curve is an ellipse centred at $(0,0)$, with $a = 2$, and $b = 1$.
 	\begin{align*}
-		\gamma(t) &= 2 \cos t + i \sin t
+		\gamma(t) & = 2 \cos t + i \sin t
 	\end{align*}
 	Therefore, as the curve goes anti-clockwise twice, $t \in [0,4 \pi]$.
 \end{solution}
@@ -1269,7 +1266,7 @@ Similarly, any other ray can be excluded in order to get a branch of $\log z$.\\
 \begin{definition}[Closed curve]
 	A curve $\gamma : [a,b] \to \mathbb{C}$ is said to be closed, if and only if
 	\begin{align*}
-		\gamma(a) &= \gamma(b)
+		\gamma(a) & = \gamma(b)
 	\end{align*}
 \end{definition}
 
@@ -1295,11 +1292,11 @@ Similarly, any other ray can be excluded in order to get a branch of $\log z$.\\
 	Let $\gamma : [a,b] \to \mathbb{C}$ be a curve, and let $f : D \to \mathbb{C}$, where $D \subseteq \mathbb{C}$, and $\gamma\left( [a,b] \right) \subset D$.
 	Then, the integral
 	\begin{align*}
-		\int\limits_{\gamma} f(z) \dif z &= \int\limits_{a}^{b} f\left( \gamma(t) \right) \dot{\gamma}(t) \dif t
+		\int\limits_{\gamma} f(z) \dif z & = \int\limits_{a}^{b} f\left( \gamma(t) \right) \dot{\gamma}(t) \dif t
 	\end{align*}
 	If $\gamma$ is piecewise differentiable, then
 	\begin{align*}
-		\int\limits_{\gamma} f(z) \dif z &= \sum\limits_{i = 1}^{n} \int\limits_{x_i}^{x_{i + 1}} f\left( \gamma(t) \right) \dot{\gamma}(t) \dif t
+		\int\limits_{\gamma} f(z) \dif z & = \sum\limits_{i = 1}^{n} \int\limits_{x_i}^{x_{i + 1}} f\left( \gamma(t) \right) \dot{\gamma}(t) \dif t
 	\end{align*}
 \end{definition}
 
