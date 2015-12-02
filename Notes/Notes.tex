@@ -81,6 +81,8 @@
 \DeclareMathOperator{\Log}{Log}
 \DeclareMathOperator{\pv}{pv}
 
+\DeclareMathOperator{\length}{length}
+
 \makeatletter
 \@addtoreset{section}{part} %resets section numbers in new part
 \makeatother
@@ -1299,5 +1301,195 @@ Similarly, any other ray can be excluded in order to get a branch of $\log z$.\\
 		\int\limits_{\gamma} f(z) \dif z & = \sum\limits_{i = 1}^{n} \int\limits_{x_i}^{x_{i + 1}} f\left( \gamma(t) \right) \dot{\gamma}(t) \dif t
 	\end{align*}
 \end{definition}
+
+\begin{definition}[Oriented contour]
+	An oriented contour for $\alpha > 0$, $z_0 \in \mathbb{C}$, is defined to be
+	\begin{align*}
+		C_{\alpha,z_0} & = \left\{ w \in \mathbb{C} : |w - z_0| = \alpha \right\}
+	\end{align*}
+	oriented anti-clockwise, starting at $z_0 + \alpha$.
+\end{definition}
+
+\begin{theorem}
+	$\forall \alpha > 0$, $z_0 \in \mathbb{C}$,
+	\begin{align*}
+		\oint\limits_{C_{\alpha,z_0}} \frac{\dif z}{z - z_0} & = 2 \pi i
+	\end{align*}
+\end{theorem}
+
+\begin{proof}
+	Let
+	\begin{align*}
+		\gamma(t) & = z_0 + \alpha e^{i t}
+	\end{align*}
+	with $0 \le t \le 2 \pi$.\\
+	Therefore,
+	\begin{align*}
+		\dot{\gamma}(t) & = \alpha i e^{i t}
+	\end{align*}
+	Therefore,
+	\begin{align*}
+		\oint\limits_{C_{\alpha,z_0}} \frac{\dif z}{z - z_0} & = \int\limits_{0}^{2 \pi} \frac{1}{z_0 + \alpha e^{i t} - z_0} \alpha i e^{i t} \dif t \\
+                                                                     & = \int\limits_{0}^{2 \pi} i \dif t                                                     \\
+                                                                     & = 2 \pi i
+	\end{align*}
+\end{proof}
+
+\begin{theorem}
+	Line integrals are linear for all $\alpha,\beta \in \mathbb{C}$, i.e.
+	\begin{align*}
+		\alpha \int\limits_{\gamma} f \dif z \pm \beta \int\limits_{\gamma} g \dif z & = \int\limits_{\gamma} \alpha f \pm \beta g \dif z
+	\end{align*}
+\end{theorem}
+
+\begin{theorem}
+	Let $\gamma_1$ and $\gamma_2$ be two curves such that the start point of $\gamma_2$ is the end point of $\gamma_1$.
+	Then, the curves can be composited to a curve $\gamma_1 + \gamma_2$, and
+	\begin{align*}
+		\int\limits_{\gamma_1} f(z) \dif z + \int\limits_{\gamma_2} f(z) \dif z & = \int\limits_{\gamma_1 + \gamma_2} f(z) \dif z
+	\end{align*}
+\end{theorem}
+
+\begin{theorem}
+	Let $\gamma : [a,b] \to \mathbb{C}$ be a curve.
+	Then, $\overline{\gamma} : [-b,-a] \to \mathbb{C}$ has orientation opposite to that of $\gamma$, and
+	\begin{align*}
+		\overline{\gamma}(t)       & = \gamma(-t) \\
+		\dot{\overline{\gamma}(t)} & = -\dot{\gamma}(t)
+	\end{align*}
+	Then,
+	\begin{align*}
+		\int\limits_{\overline{\gamma}} f(z) \dif z & = -\int\limits_{\gamma} f(z) \dif z
+	\end{align*}
+\end{theorem}
+
+\begin{theorem}[Length of a curve]
+	The length of the curve $\gamma : [a,b] \to \mathbb{C}$ is given by
+	\begin{align*}
+		\length(\gamma) & = \int\limits_{a}^{b} \left| \dot{\gamma}(t) \right| \dif t
+	\end{align*}
+\end{theorem}
+
+\begin{question}
+	Find the length of the astroid given by
+	\begin{align*}
+		\gamma(t) & = \cos^3 t + i \sin^3 t
+	\end{align*}
+	where $\gamma : [0,2 \pi] \to \mathbb{C}$.
+\end{question}
+
+\begin{solution}
+	\begin{align*}
+		\gamma(t)                                 & = \cos^3 t + i \sin^3 t                                         \\
+		\therefore \dot{\gamma}(t)                & = -3 \sin t \cos^2 t + 3 i \cos t \sin^2 t                      \\
+		\therefore \left| \dot{\gamma}(t) \right| & = \sqrt{9 \left( \cos^4 t \sin^2 t + \sin^4 t \cos^2 t \right)} \\
+                                                          & = 3 |\sin t \cos t| \sqrt{\cos^2 t + \sin^2 t}                  \\
+                                                          & = 3 |\sin t \cos t|
+	\end{align*}
+	Therefore,
+	\begin{align*}
+		\length(\gamma) & = \int\limits_{a}^{b} \left| \dot{\gamma}(t) \right| \dif t \\
+                                & = 3 \int\limits_{0}^{2 \pi} |\sin t \cos t| \dif t          \\
+                                & = 12 \int\limits_{0}^{\frac{\pi}{2}} \sin t \cos t \dif t   \\
+                                & = 6 \int\limits_{0}^{\frac{\pi}{2}} \sin 2 t \dif t         \\
+                                & = 6
+	\end{align*}
+\end{solution}
+
+\begin{theorem}
+	Let $f(z)$ be a function defined in a domain $D$ including a curve $\gamma$.
+	Let $\exists M > 0$, such that all values of $f$ have $\left| f(z) \right| \le M$, then
+	\begin{align*}
+		\left| \int\limits_{\gamma} f(z) \dif z \right| & \le M \length(\gamma)
+	\end{align*}
+\end{theorem}
+
+\begin{definition}[Primitive function]
+	Let $D \subset \mathbb{C}$.
+	$F(z)$ is said to be the primitive function of $f(z)$ in $D$, if $\forall z \in D$,
+	\begin{align*}
+		F'(z) & = f(z)
+	\end{align*}
+\end{definition}
+
+\begin{theorem}[Fundamental Theorem of Calculus]
+	Let $\gamma : [a,b] \to \mathbb{C}$ be piecewise continuous, and let $f$ be continuous on $\gamma$, i.e. $f \circ \gamma$ is continuous.
+	Let there exist an analytic function $F$, defined on a domain including $\gamma$, such that $\forall z \in \gamma$,
+	\begin{align*}
+		F'(z) & = f(z)
+	\end{align*}
+	Then,
+	\begin{align*}
+		\int\limits_{\gamma} f(z) \dif z & = F\left( \gamma(b) \right) - F\left( \gamma(a) \right)
+	\end{align*}
+	\label{thm:Fundamental_Theorem_of_Calculus}
+\end{theorem}
+
+\begin{theorem}[Equivalent conditions for existence of a primitive function]
+	Let $D$ be a domain.
+	Let $f$ be continuous on $D$.
+	Then, the following conditions are equivalent.
+	\begin{enumerate}
+		\item
+			$f$ has a primitive function $F$ in $D$.
+		\item
+			For any closed path $\gamma$ such that $\gamma \subset D$,
+			\begin{align*}
+				\int\limits_{\gamma} f(z) \dif z &= 0
+			\end{align*}
+		\item
+			For any curve $\gamma$ such that $\gamma \subset D$, the integral $\displaystyle \int\limits_{\gamma} f(z) \dif z$ depends only on the edges of $\gamma$.
+	\end{enumerate}
+	\label{Equivalent_conditions_for_existence_of_a_primitive_function}
+\end{theorem}
+
+\begin{question}
+	Find $\displaystyle \int\limits_{\gamma} \cos z \dif z$ where $\gamma$ goes from $\pi$ to $i$.
+\end{question}
+
+\begin{solution}
+	$\sin z$ is the primitive of $\cos z$ over $\mathbb{C}$.\\
+	Therefore,
+	\begin{align*}
+		\int\limits_{\gamma} \cos z \dif z & = \sin i - \sin \pi                  \\
+                                                   & = \frac{e^{i^2} - e^{-i^2}}{2 i} - 0 \\
+                                                   & = \frac{e^{-1} - e}{2 i}             \\
+                                                   & = i \frac{-\frac{1}{e} + e}{2}
+	\end{align*}
+\end{solution}
+
+\begin{question}
+	Calculate the integral of
+	\begin{align*}
+		f(z) & = (z - z_0)^n
+	\end{align*}
+	$\forall n \in \mathbb{Z}$, where $\gamma = C_{R,z_0}$.
+\end{question}
+
+\begin{solution}
+	For $0 \le t \le 2 \pi$,
+	\begin{align*}
+		\gamma(t)                  & = z_0 + R e^{i t} \\
+		\therefore \dot{\gamma}(t) & = R i e^{i t}
+	\end{align*}
+	Therefore,
+	\begin{align*}
+		\int\limits_{\gamma} (z - z_0)^n \dif z & = \int\limits_{0}^{2 \pi} \left( z_0 + R e^{i t} - z_0 \right)^n \left( R i e^{i t} \right) \dif t \\
+                                                        & = i R^{n + 1} \int\limits_{0}^{2 \pi} e^{i (n + 1) t} \dif t
+	\end{align*}
+	Therefore,
+	\begin{align*}
+		\int\limits_{\gamma} (z - z_0)^n \dif z &=
+			\begin{cases}
+				2 \pi i                                                            & ;\quad n = -1    \\
+				\left. \frac{R^{n + 1}}{n + 1} e^{i (n + 1) t} \right|_{0}^{2 \pi} & ;\quad n \neq -1 \\
+			\end{cases}\\
+		&=
+			\begin{cases}
+				2 \pi i & ;\quad n = -1    \\
+				0       & ;\quad n \neq -1 \\
+			\end{cases}
+	\end{align*}
+\end{solution}
 
 \end{document}
