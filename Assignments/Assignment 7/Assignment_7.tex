@@ -1,0 +1,280 @@
+\documentclass[fleqn, a4paper, 11pt, oneside]{amsart}
+%\usepackage[top = 2cm, bottom = 1cm, left = 1cm, right = 1cm]{geometry}
+\usepackage{exsheets, tasks}
+\usepackage{amsmath, amssymb, amsthm} %standard AMS packages
+\usepackage{marginnote} %marginnotes
+\usepackage{gensymb} %miscellaneous symbols
+\usepackage{commath} %differential symbols
+\usepackage{xcolor} %colours
+\usepackage{cancel} %cancelling terms
+\usepackage[free-standing-units, space-before-unit]{siunitx} %formatting units
+\usepackage{tikz, pgfplots} %diagrams
+\usetikzlibrary{calc, hobby, patterns, intersections, decorations.markings}
+\usepackage{graphicx} %inserting graphics
+\usepackage{hyperref} %hyperlinks
+\usepackage{datetime} %date and time
+\usepackage{ulem} %underline for \emph{}
+\usepackage{xfrac} %inline fractions
+\usepackage{enumerate,enumitem} %numbered lists
+\usepackage{float} %inserting floats
+\usepackage{circuitikz}[american voltages, american currents] %circuit diagrams
+
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}} %adds numbers to specific equations in non-numbered list of equations
+
+\newcommand{\AxisRotator}[1][rotate=0]{
+	\tikz [x=0.25cm,y=0.60cm,line width=.2ex,-stealth,#1] \draw (0,0) arc (-150:150:1 and 1);%
+} %rotation symbols on axes
+
+\theoremstyle{definition}
+\newtheorem{example}{Example}
+\newtheorem{definition}{Definition}
+
+\theoremstyle{theorem}
+\newtheorem{theorem}{Theorem}
+
+\renewcommand{\Re}{\mathrm{Re}}
+\renewcommand{\Im}{\mathrm{Im}}
+
+\DeclareMathOperator{\Arg}{Arg}
+
+\DeclareMathOperator{\Int}{Int}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\boundary}{\partial}
+
+\DeclareMathOperator{\Log}{Log}
+\DeclareMathOperator{\pv}{pv}
+
+\DeclareMathOperator{\length}{length}
+
+\makeatletter
+\@addtoreset{section}{part} %resets section numbers in new part
+\makeatother
+
+\renewcommand{\thesubsection}{(\arabic{subsection})}
+\renewcommand{\thesection}{(\arabic{section})}
+
+%section headings on left
+\makeatletter
+\def\specialsection{\@startsection{section}{1}%
+	\z@{\linespacing\@plus\linespacing}{.5\linespacing}%
+	%  {\normalfont\centering}}% DELETED
+	{\normalfont}}% NEW
+\def\section{\@startsection{section}{1}%
+	\z@{.7\linespacing\@plus\linespacing}{.5\linespacing}%
+	%  {\normalfont\scshape\centering}}% DELETED
+	{\normalfont\scshape}}% NEW
+\makeatother
+
+%forces newline after subsection
+\makeatletter
+\def\subsection{\@startsection{subsection}{3}%
+	\z@{.5\linespacing\@plus.7\linespacing}{.1\linespacing}%
+	{\normalfont\itshape}}
+\makeatother
+
+\settasks{counter-format = tsk[1].}
+
+\SetupExSheets{solution/print = true}
+
+%opening
+\title{Complex Functions : Assignment 7}
+\author
+{
+	Aakash Jog\\
+	ID : 989323563
+}
+\date{\formatdate{16}{12}{2015}}
+
+\begin{document}
+
+\tikzset{->-/.style={decoration={
+  markings,
+  mark=at position #1 with {\arrow{>}}},postaction={decorate}}}
+
+\maketitle
+%\setlength{\mathindent}{0pt}
+
+\setcounter{question}{0}
+\begin{question}
+	Calculate the length of the following curves using the correct parametrization.
+	\begin{enumerate}
+		\setcounter{enumi}{3}
+		\item $\gamma(t) = (t - \sin t) + i (1 - \cos t)$, $t \in [0,2 \pi]$.
+	\end{enumerate}
+\end{question}
+
+\begin{solution}
+	\begin{enumerate}[leftmargin=*]
+		\setcounter{enumi}{3}
+		\item
+			\begin{align*}
+				\gamma(t)                  & = (t - \sin t) + i (1 - \cos t) \\
+				\therefore \dot{\gamma}(t) & = 1 - \cos t + i \sin t
+			\end{align*}
+			Therefore,
+			\begin{align*}
+				\left| \dot{\gamma}(t) \right| & = \sqrt{(1 - \cos t)^2 + \sin^2 t}          \\
+                                                               & = \sqrt{1 - 2 \cos t + \cos^2 t + \sin^2 t} \\
+                                                               & = \sqrt{2 - 2 \cos t}
+			\end{align*}
+			Therefore,
+			\begin{align*}
+				\length(\gamma) & = \int\limits_{a}^{b} \left| \dot{\gamma}(t) \right| \dif t  \\
+                                                & = \int\limits_{0}^{2 \pi} \sqrt{2 - 2 \cos t} \dif t         \\
+                                                & = \int\limits_{0}^{2 \pi} \sqrt{4 \sin^2 \frac{t}{2}} \dif t \\
+                                                & = \int\limits_{0}^{2 \pi} 2 \sin \frac{t}{2} \dif t          \\
+                                                & = \left. -4 \cos \frac{t}{2} \right|_{0}^{2 \pi}             \\
+                                                & = 8
+			\end{align*}
+	\end{enumerate}
+\end{solution}
+
+\setcounter{question}{1}
+\begin{question}
+	Calculate $\displaystyle \frac{1}{2 \pi} \int\limits_{0}^{2 \pi} e^{i m \theta} e^{-i n \theta} \dif \theta$, $m,n \in \mathbb{Z}$.
+	Hint: Divide to the cases $m = n$, and $m \neq n$.
+\end{question}
+
+\begin{solution}
+	If $m = n$,
+	\begin{align*}
+		\frac{1}{2 \pi} \int\limits_{0}^{2 \pi} e^{i m \theta} e^{-i n \theta} \dif \theta & = \frac{1}{2 \pi} \int\limits_{0}^{2 \pi} \dif \theta \\
+                                                                                                   & = 1
+	\end{align*}
+	If $m \neq n$,
+	\begin{align*}
+		\frac{1}{2 \pi} \int\limits_{0}^{2 \pi} e^{i m \theta} e^{-i n \theta} \dif \theta & = \frac{1}{2 \pi} \int\limits_{0}^{2 \pi} e^{i (m - n) \theta} e^{i n \theta} e^{-i n \theta} \dif \theta \\
+                                                                                                   & = \frac{1}{2 \pi} \int\limits_{0}^{2 \pi} e^{i (m - n) \theta} \dif \theta                                \\
+                                                                                                   & = \frac{1}{2 \pi} \left. \frac{e^{i (m - n) \theta}}{i (m - n)} \right|_{0}^{2 \pi}                       \\
+                                                                                                   & = 0
+	\end{align*}
+\end{solution}
+
+\setcounter{question}{2}
+\begin{question}
+	Prove
+	\begin{enumerate}
+		\setcounter{enumi}{0}
+		\item
+			The function $f(z) = \overline{z}$ has no analytic primitive which is analytic at every point.
+	\end{enumerate}
+\end{question}
+
+\begin{solution}
+	\begin{enumerate}[leftmargin=*]
+		\setcounter{enumi}{0}
+		\item
+			Let $\gamma_1$ be the line joining $0$ and $1$.\\
+			Therefore,
+			\begin{align*}
+				\gamma_1(t)                  & = t \\
+				\therefore \dot{\gamma_1}(t) & = 1
+			\end{align*}
+			where $t \in (0,1)$.\\
+			Let $\gamma_2$ be the line joining $1$ and $1 + i$.\\
+			Therefore,
+			\begin{align*}
+				\gamma_2(t)                  & = 1 + i t \\
+				\therefore \dot{\gamma_2}(t) & = i
+			\end{align*}
+			where $t \in (0,1)$.\\
+			Let $\gamma_3$ be the line joining $1 + i$ and $0$.\\
+			Therefore,
+			\begin{align*}
+				\gamma_3(t)                  & = t + i t \\
+				\therefore \dot{\gamma_3}(t) & = 1 + i
+			\end{align*}
+			where $t \in (0,1)$.\\
+			Therefore,
+			\begin{align*}
+				\int\limits_{\gamma} \overline{z} \dif z & = \quad \int\limits_{0}^{1} f\left( \gamma_1(t) \right) \dot{\gamma_1}(t) \dif t                                                                                                  \\
+                                                                         & \quad + \int\limits_{0}^{1} f\left( \gamma_2(t) \right) \dot{\gamma_2}(t) \dif t                                                                                                  \\
+                                                                         & \quad + \int\limits_{1}^{0} f\left( \gamma_3(t) \right) \dot{\gamma_3}(t) \dif t                                                                                                  \\
+                                                                         & = \int\limits_{0}^{1} \overline{t} \dif t + \int\limits_{0}^{1} \left( \overline{1 + i t} \right) i \dif t + \int\limits_{1}^{0} \left( \overline{t + i t} \right) (1 + i) \dif t \\
+                                                                         & = \int\limits_{0}^{1} t \dif t + \int\limits_{0}^{1} (1 - i t) i \dif t - \int\limits_{0}^{1} (t - i t) (1 + i) \dif t                                                            \\
+                                                                         & = \int\limits_{0}^{1} t \dif t + \int\limits_{0}^{1} i + t \dif t - \int\limits_{0}^{1} 2 t \dif t                                                                                \\
+                                                                         & = \left. \frac{t^2}{2} \right|_{0}^{1} + \left. i t + \frac{t^2}{2} \right|_{0}^{1} - \left. t^2 \right|_{0}^{1}                                                                  \\
+                                                                         & = \frac{1}{2} + i + \frac{1}{2} - 1                                                                                                                                               \\
+                                                                         & = i
+			\end{align*}
+			Therefore, the integral of $f(z) = \overline{z}$ is non zero over a closed path.
+			Hence, it cannot have an analytic primitive over $\mathbb{C}$.
+	\end{enumerate}
+\end{solution}
+
+\setcounter{question}{5}
+\begin{question}
+	\begin{enumerate}
+		\setcounter{enumi}{1}
+		\item
+			$\gamma$ is the triangle whose vertices are $0$, $1$, $1 + i$.
+			Calculate $\displaystyle \int\limits_{\gamma} \overline{z} \dif z$.
+	\end{enumerate}
+\end{question}
+
+\begin{solution}
+	\begin{enumerate}[leftmargin=*]
+		\item
+			Let $\gamma_1$ be the line joining $0$ and $1$.\\
+			Therefore,
+			\begin{align*}
+				\gamma_1(t)                  & = t \\
+				\therefore \dot{\gamma_1}(t) & = 1
+			\end{align*}
+			where $t \in (0,1)$.\\
+			Let $\gamma_2$ be the line joining $1$ and $1 + i$.\\
+			Therefore,
+			\begin{align*}
+				\gamma_2(t)                  & = 1 + i t \\
+				\therefore \dot{\gamma_2}(t) & = i
+			\end{align*}
+			where $t \in (0,1)$.\\
+			Let $\gamma_3$ be the line joining $1 + i$ and $0$.\\
+			Therefore,
+			\begin{align*}
+				\gamma_3(t)                  & = t + i t \\
+				\therefore \dot{\gamma_3}(t) & = 1 + i
+			\end{align*}
+			where $t \in (0,1)$.\\
+			Therefore,
+			\begin{align*}
+				\int\limits_{\gamma} \overline{z} \dif z & = \quad \int\limits_{0}^{1} f\left( \gamma_1(t) \right) \dot{\gamma_1}(t) \dif t                                                                                                  \\
+                                                                         & \quad + \int\limits_{0}^{1} f\left( \gamma_2(t) \right) \dot{\gamma_2}(t) \dif t                                                                                                  \\
+                                                                         & \quad + \int\limits_{1}^{0} f\left( \gamma_3(t) \right) \dot{\gamma_3}(t) \dif t                                                                                                  \\
+                                                                         & = \int\limits_{0}^{1} \overline{t} \dif t + \int\limits_{0}^{1} \left( \overline{1 + i t} \right) i \dif t + \int\limits_{1}^{0} \left( \overline{t + i t} \right) (1 + i) \dif t \\
+                                                                         & = \int\limits_{0}^{1} t \dif t + \int\limits_{0}^{1} (1 - i t) i \dif t - \int\limits_{0}^{1} (t - i t) (1 + i) \dif t                                                            \\
+                                                                         & = \int\limits_{0}^{1} t \dif t + \int\limits_{0}^{1} i + t \dif t - \int\limits_{0}^{1} 2 t \dif t                                                                                \\
+                                                                         & = \left. \frac{t^2}{2} \right|_{0}^{1} + \left. i t + \frac{t^2}{2} \right|_{0}^{1} - \left. t^2 \right|_{0}^{1}                                                                  \\
+                                                                         & = \frac{1}{2} + i + \frac{1}{2} - 1                                                                                                                                               \\
+                                                                         & = i
+			\end{align*}
+	\end{enumerate}
+\end{solution}
+
+\setcounter{question}{6}
+\begin{question}
+	\begin{align*}
+		f(z) & = \frac{1}{2 \sqrt{z}}
+	\end{align*}
+	Calculate the integral over the curve starting at $1$ and ending at $9$, going over the polygon whose vertices are $1$, $1 + 8 i$, $9 + 8 i$, and then going through the right half part of a circle, with radius $4$, from $9 + 8 i$ to $9$.
+\end{question}
+
+\begin{solution}
+	\begin{align*}
+		f(z) & = \frac{1}{2 \sqrt{z}}
+	\end{align*}
+	Therefore,
+	\begin{align*}
+		F(z) & = \sqrt{z}
+	\end{align*}
+	is a primitive of $f(z)$.\\
+	Let the given curve be $\gamma$.\\
+	Therefore,
+	\begin{align*}
+		\int\limits_{\gamma} f(z) \dif z & = F(9) - F(1) \\
+                                                 & = 3 - 1       \\
+                                                 & = 2
+	\end{align*}
+\end{solution}
+
+\end{document}
