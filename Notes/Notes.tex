@@ -1551,4 +1551,128 @@ Similarly, any other ray can be excluded in order to get a branch of $\log z$.\\
 	\label{thm:Cauchy_Differentiation_Formula}
 \end{theorem}
 
+\begin{theorem}
+	If $f$ is analytic in $D$, then $f$ is infinitely differentiable.
+\end{theorem}
+
+\begin{proof}
+	Let $z_0 \in D$.
+	Therefore, $\exists \varepsilon > 0$, such that $D(z_0,\varepsilon) \in D$.
+	Therefore, by \nameref{thm:Cauchy_Differentiation_Formula},
+	\begin{align*}
+		f^{(n)}(z_0) & = \frac{n!}{2 \pi i} \int\limits_{C_{z_0,\varepsilon}} \frac{f(z)}{(z - z_0)^{n + 1}} \dif x
+	\end{align*}
+	and particularly, exists.
+\end{proof}
+
+\begin{theorem}[Morera's Theorem]
+	Let $D$ be a domain, and let $f : D \to \mathbb{C}$ be continuous.
+	If $\int\limits_{\gamma} f(z) \dif z = 0$, for any closed curve $\gamma$, such that $\gamma \in D$, then $f$ is analytic in $D$
+	\label{thm:Morera's_Theorem}
+\end{theorem}
+
+\begin{proof}
+	By \nameref{Equivalent_conditions_for_existence_of_a_primitive_function}, as
+	\begin{align*}
+		\int\limits_{\gamma} f(z) \dif z & = 0
+	\end{align*}
+	there exists a primitive function $F$ for $f$, i.e.,
+	\begin{align*}
+		F'(z) & = f(z)
+	\end{align*}
+	for all $z \in D$.\\
+	Therefore, as $F$ is differentiable in $D$, and as $D$ is a domain, and hence is open, $F$ is analytic.\\
+	Therefore, as $F$ is analytic in $D$, $F$ is infinitely differentiable, with analytic derivatives.
+\end{proof}
+
+\begin{theorem}[Cauchy Derivative Estimate]
+	Let $f$ be analytic in $D_{z_0,r}$.
+	Let $\partial D_{z_0,r}$ be denoted as $C_{z_0,r}$.\\
+	Let
+	\begin{align*}
+		M_R & = \max\limits_{z \in C_{z_0,R}}\left| f(z) \right|
+	\end{align*}
+	Then, $\forall n \in \mathbb{N}$,
+	\begin{align*}
+		\left| f^{(n)}(z_0) \right| & \le \frac{n! M_R}{R^n}
+	\end{align*}
+	\label{thm:Cauchy_Derivative_Estimate}
+\end{theorem}
+
+\begin{question}
+	Find $\int\limits_{-\pi}^{\pi} \frac{1}{2 - \cos t} \dif t$.
+\end{question}
+
+\begin{solution}
+	Let
+	\begin{align*}
+		z                 & = e^{i t} \\
+		\therefore \dif z & = i z \dif t
+	\end{align*}
+	\begin{align*}
+		\int\limits_{-\pi}^{\pi} \frac{1}{2 - \cos t} \dif t & = \int\limits_{\partial D_{0,1}} \frac{1}{2 - \frac{z + z^{-1}}{2}} \frac{\dif z}{i z}                              \\
+                                                                     & = \int\limits_{\partial D_{0,1}} \frac{2 \dif z}{\left( 4 - z - z^{-1} \right) i z}                                 \\
+                                                                     & = \int\limits_{\partial D_{0,1}} \frac{2 \dif z}{-i \left( z^2 - 4 z + 1 \right)}                                   \\
+                                                                     & = \int\limits_{\partial D_{0,1}} \frac{2 \dif z}{i \left(z -  2 + \sqrt{3} \right) \left( z - 2 - \sqrt{3} \right)} \\
+                                                                     & = 2 i \int\limits_{\partial D_{0,1}} \frac{\dif z}{\left( z - 2 + \sqrt{3} \right) \left( z - 2 - \sqrt{3} \right)}
+	\end{align*}
+	Let
+	\begin{align*}
+		z_1 & = 2 + \sqrt{3} \\
+		z_2 & = 2 - \sqrt{3}
+	\end{align*}
+	Therefore, as $z_1 \in D_{0,1}$, by \nameref{thm:Cauchy_Integral_Formula/Mean_Value_Theorem},
+	\begin{align*}
+		\int\limits_{-\pi}^{\pi} \frac{1}{2 - \cos t} \dif t & = 2 i \int\limits_{\partial D_{0,1}} \frac{\dif z}{\left( z - 2 + \sqrt{3} \right) \left( z - 2 - \sqrt{3} \right)} \\
+                                                                     & = 2 i \left. \left( 2 \pi i \left( \frac{1}{z - 2 - \sqrt{3}} \right) \right) \right|_{z = 2 - \sqrt{3}}            \\
+                                                                     & = -4 \pi \left( \frac{1}{2 - \sqrt{3} - 2 - \sqrt{3}} \right)                                                       \\
+                                                                     & = \frac{2 \pi}{\sqrt{3}}
+	\end{align*}
+	Therefore, the integral is real, which is expected, as the function is real.
+\end{solution}
+
+\begin{question}
+	Calculate $\int\limits_{C_{1,3}} \frac{\cos z}{(z - i)^3} \dif z$.
+\end{question}
+
+\begin{solution}
+	\begin{align*}
+		\int\limits_{C_{1,3}} \frac{\cos z}{(z - i)^{2 + 1}} \dif z & = \frac{2 \pi i}{2} \left. \cos z \right|_{z = 1} \\
+                                                                            & = -i \pi \cos(i)                                  \\
+                                                                            & = -i \pi \frac{e^{-1} + e^{1}}{2}                 \\
+                                                                            & = -i \pi \cosh(1)
+	\end{align*}
+\end{solution}
+
+\section{Liouville's Theorem}
+
+\begin{theorem}[Liouville's Theorem]
+	If $f$ is entire and bounded, then $f$ is constant.
+	\label{thm:Liouville's_Theorem}
+\end{theorem}
+
+\begin{question}
+	If $f$ is entire, such that $\forall z \in \mathbb{C}$, $\Re\left( f(z) \right) < M$, show that it is constant.
+\end{question}
+
+\begin{solution}
+		As $e^{\Re\left( f(x) \right)} < M$,
+		\begin{align*}
+			\left| e^{f(z)} \right|            & = e^{\Re\left( f(z) \right)} \\
+			\therefore \left| e^{f(z)} \right| & < e^M
+		\end{align*}
+		Therefore, $e^{\Re\left( f(z) \right)}$ is an entire and bounded function.
+		Therefore, by \nameref{thm:Liouville's_Theorem}, $e^{f(z)}$ is constant.\\
+		Let
+		\begin{align*}
+			e^{f(z)} & = c
+		\end{align*}
+		Therefore,
+		\begin{align*}
+			f(z) & = \ln|c| + 2 \pi k i
+		\end{align*}
+		Therefore, even though $k$ may be dependent on $z$, as $f(z)$ is continuous, $k$ must be continuous, to ensure that there is no discontinuity in $f(z)$.
+		Therefore, $f(z)$ is constant.
+\end{solution}
+
 \end{document}
