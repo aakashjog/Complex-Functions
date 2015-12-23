@@ -11,6 +11,8 @@
 *.alg
 *.bbl
 *.blg
+*.fdb_latexmk
+*.fls
 *.tui
 *.top
 *.tmp
@@ -26,8 +28,9 @@
 *.mtc
 *.mtc1
 *.out
-*.synctex.gz
 *.soc
+*.swo
+*.synctex.gz
 
 # Mac IDE files
 *.swp
