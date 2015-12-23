@@ -1492,4 +1492,63 @@ Similarly, any other ray can be excluded in order to get a branch of $\log z$.\\
 	\end{align*}
 \end{solution}
 
+\begin{theorem}
+	\begin{align*}
+		\int\limits_{\gamma} P \dif x + Q \dif y &= \int\limits_{a}^{b} \left( P\left( \gamma(t) \right) \dot{x}(t) + Q\left( \gamma(t) \right) \dot{y}(t) \right) \dif t
+	\end{align*}
+	where $t \in [a,b]$.
+\end{theorem}
+
+\begin{theorem}
+	If
+	\begin{align*}
+		f &= u + i v
+	\end{align*}
+	then,
+	\begin{align*}
+		\int\limits_{\gamma} f(z) \dif z &= \int\limits_{\gamma} u \dif x - v \dif y + i \int\limits_{\gamma} v \dif x + u \dif y
+	\end{align*}
+\end{theorem}
+
+\begin{theorem}[Green's Theorem]
+	Let
+	\begin{align*}
+		F &= P \dif x + Q \dif y
+	\end{align*}
+	such that $P_x$, $P_y$, $Q_x$, $Q_y$ are continuous in the domain $D$,
+	\begin{align*}
+		\int\limits_{\partial D} P \dif x + Q \dif y &= \iint\limits_{D} \left( Q_x - P_y \right) \dif x \dif y
+	\end{align*}
+	\label{thm:Green's_Theorem}
+\end{theorem}
+
+\begin{theorem}[Cauchy-Goursat Theorem]
+	Let $D$ be a domain, such that $\partial D$ is obtained by a finite number of curves, ie. $\partial D$ is piecewise differentiable.
+	If $f : \overline{D} \to \mathbb{C}$ is analytic, then
+	\begin{align*}
+		\int\limits_{\partial D} f(z) \dif z &= 0
+	\end{align*}
+	\label{thm:Cauchy-Goursat_Theorem}
+\end{theorem}
+
+\section{Cauchy Integral Formula}
+
+\begin{theorem}[Cauchy Integral Formula/Mean Value Theorem]
+	Let $C$ be a simple closed curve in positive orientation with respect to a domain, $D_C$, closed by a curve $C$.
+	If $f$ is analytic in $D_C$, then
+	\begin{align*}
+		f(z_0) &= \frac{1}{2 \pi i} \int\limits_{C} \frac{f(z)}{z - z_0} \dif z
+	\end{align*}
+	\label{thm:Cauchy_Integral_Formula/Mean_Value_Theorem}
+\end{theorem}
+
+\begin{theorem}[Cauchy Differentiation Formula]
+	Let $C$ be a simple closed curve in positive orientation with respect to a domain, $D_C$, closed by a curve $C$.
+	If $f$ is analytic in $D_C$, then
+	\begin{align*}
+		f^{(n)}(z_0) &= \frac{1}{2 \pi i} \int\limits_{C} \frac{f(z)}{(z - z_0)^{n + 1}} \dif z
+	\end{align*}
+	\label{thm:Cauchy_Differentiation_Formula}
+\end{theorem}
+
 \end{document}
