@@ -1675,4 +1675,298 @@ Similarly, any other ray can be excluded in order to get a branch of $\log z$.\\
 		Therefore, $f(z)$ is constant.
 \end{solution}
 
+\begin{question}
+	Let $f$ be entire and periodic, with two periods, $1$ and $i$, i.e. $\forall z \in \mathbb{C}$,
+	\begin{align*}
+		f(z) & = f(z + 1) \\
+                     & = f(z + i)
+	\end{align*}
+	Then, $f$ is constant.
+\end{question}
+
+\begin{solution}
+	Let
+	\begin{align*}
+		D & = \left\{ z : 0 \le \Re(z) \le 1 , 0 \le \Im(z) \le 1 \right\}
+	\end{align*}
+	be a compact set.\\
+	$f$ is continuous over $D$, and hence, $|f|$ is also continuous over $D$.\\
+	Therefore, by Weierstrass theorem, $f$ is bounded in $D$.\\
+	As the function is periodic with periods $1$ and $i$,
+	\begin{align*}
+		f(x + i y)      & = f\left( x - \lfloor x \rfloor + i \left( y - \lfloor y \rfloor \right) \right) \\
+		\therefore f(D) & = f(\mathbb{C})
+	\end{align*}
+	Therefore, $f$ is bounded in $\mathbb{C}$, and by \nameref{thm:Liouville's_Theorem}, it is constant.
+\end{solution}
+
+\section{Fundamental Theorem of Algebra}
+
+\begin{theorem}
+	$\exists R > 0$, such that, $\forall |z| > R$,
+	\begin{align*}
+		\left| \rho(z) \right| & = \left| \sum\limits_{k = 0}^{n} a_k z^k \right| \\
+                                       & \ge \frac{|a_n| |z|^n}{2}
+	\end{align*}
+\end{theorem}
+
+\begin{theorem}[Fundamental Theorem of Algebra]
+	Any polynomial $p(z)$, of degree $n \ge 1$, over $\mathbb{C}$ has at least one root in $\mathbb{C}$, i.e. $\exists z_0$, such that
+	\begin{align*}
+		p(z_0) & = 0
+	\end{align*}
+	\label{thm:Fundamental_Theorem_of_Algebra}
+\end{theorem}
+
+\begin{proof}
+	If possible, $\forall z \in \mathbb{C}$, let
+	\begin{align*}
+		p(z) & \neq 0
+	\end{align*}
+	As $p(z)$ is a polynomial, it is an entire function.\\
+	Therefore,
+	\begin{align*}
+		f(z) & = \frac{1}{p(z)}
+	\end{align*}
+	is also entire.\\
+	Therefore, $\exists R > 0$, such that $\forall |z| > R$,
+	\begin{align*}
+		\left| p(z) \right|            & \ge \frac{|a_n| |z|^n}{2} \\
+		\therefore \left| p(z) \right| & \ge \frac{|a_n| R^n}{2}
+	\end{align*}
+	Therefore, $\forall |z| > R$,
+	\begin{align*}
+		\left| f(z) \right|            & = \frac{1}{\left| p(z) \right|} \\
+		\therefore \left| f(z) \right| & \le \frac{1}{\frac{|a_n| R^n}{2}}
+	\end{align*}
+	Let
+	\begin{align*}
+		m_1 & = \frac{1}{\frac{|a_n| R^n}{2}} \\
+                    & = \frac{2}{|a_n| R^n}
+	\end{align*}
+	Therefore, $\forall |z| > R$,
+	\begin{align*}
+		\left| f(z) \right| & \le m_1
+	\end{align*}
+	Let the closed disk $D$ be
+	\begin{align*}
+		D & = \left\{ z : |z| \le R \right\}
+	\end{align*}
+	Therefore, $f$ is continuous in $D$.
+	Hence, $|f|$ is also continuous in $D$.\\
+	By Weierstrass theorem, $|f|$ is bounded in $D$.\\
+	Therefore, let
+	\begin{align*}
+		\left| f(z) \right| & \le m_2
+	\end{align*}
+	Therefore, $\forall z \in \mathbb{C}$,
+	\begin{align*}
+		\left| f(z) \right| & \le \max\{m_1,m_2\}
+	\end{align*}
+	Therefore, as $f(z)$ is entire and bounded, by \nameref{thm:Liouville's_Theorem}, it is constant.\\
+	Therefore,
+	\begin{align*}
+		p(z) & = \frac{1}{f(z)}
+	\end{align*}
+	is constant. Hence, the degree of $p(z)$ is $0$.\\
+	This contradicts the assumption the condition of $n \ge 1$.
+	Hence, $p(z)$ has at least one root in $\mathbb{C}$.
+\end{proof}
+
+\begin{theorem}
+	Any polynomial of degree $n \ge 1$ has exactly $n$ roots, not necessarily distinct.
+	Particularly,
+	\begin{align*}
+		p(z) & = a_n \prod\limits_{k = 1}^{n} (z - z_k)
+	\end{align*}
+	where each $z_k$ is a root of $p(z)$.
+\end{theorem}
+
+\section{Maximum Modulus Principle}
+
+\begin{theorem}
+	Let $f$ be an analytic function in a domain $D$, and $\forall z \in D_{z_0,\varepsilon} \subset D$, let
+	\begin{align*}
+		\left| f(z) \right| &\le \left| f(z_0) \right|
+	\end{align*}
+	Then, $f$ is constant on $D_{z_0,\varepsilon}$, i.e., $\forall z \in D_{z_0,\varepsilon}$,
+	\begin{align*}
+		f(z) & = f(z_0)
+	\end{align*}
+\end{theorem}
+
+\begin{proof}
+	For $\rho < \varepsilon$, let
+	\begin{align*}
+		C_{\rho} & = \left\{ z : |z - z_0| = \rho \right\}
+	\end{align*}
+	Therefore, $f$ is analytic inside and on $C_{\rho}$.\\
+	Therefore, by \nameref{thm:Cauchy_Integral_Formula/Mean_Value_Theorem},
+	\begin{align*}
+		\left| f(z_0) \right|  & = \left| \frac{1}{2 \pi i} \int\limits_{C_{\rho}} \frac{f(z)}{z - z_0} \dif z \right|                                                                \\
+                                       & = \left| \frac{1}{2 \pi i} \int\limits_{0}^{2 \pi} \frac{f\left( z_0 + \rho e^{i t} \right)}{z_0 + \rho e^{i t} - z_0} i \rho e^{i t} \dif t \right| \\
+                                       & = \left| \frac{1}{2 \pi} \int\limits_{0}^{2 \pi} f\left( z_0 + \rho e^{i t} \right) \dif t \right|                                                   \\
+                                       & \le \frac{1}{2 \pi} \int\limits_{0}^{2 \pi} \left| f\left( z_0 + \rho e^{i t} \right) \right| \dif t
+		\marginnote
+		{
+			$\left| f(z) \right| \le \left| f(z_0) \right|$
+		}                     \\
+                                       & \le \frac{1}{2 \pi} \int\limits_{0}^{2 \pi} \left| f(z_0) \right| \dif t                                                                             \\
+	\end{align*}
+	Also,
+	\begin{align*}
+		\left| f(z_0) \right|            & \ge \left| f\left( z_0 + \rho e^{i t} \right) \right| \\
+		\therefore \left| f(z_0) \right| & \ge \frac{1}{2 \pi} \int\limits_{0}^{2 \pi} \left| f\left( z_0 + \rho e^{i t} \right) \right| \dif t
+	\end{align*}
+	Therefore,
+	\begin{align*}
+		\left| f(z_0) \right|                                                           & = \frac{1}{2 \pi} \int\limits_{0}^{2 \pi} \left| f\left(z_0 + \rho e^{i t} \right) \right| \dif t  \\
+		\therefore \frac{1}{2 \pi} \int\limits_{0}^{2 \pi} \left| f(z_0) \right| \dif t & = \frac{1}{2 \pi} \int\limits_{0}^{2 \pi} \left| f\left( z_0 + \rho e^{i t} \right) \right| \dif t \\
+		\therefore 0                                                                    & = \frac{1}{2 \pi} \int\limits_{0}^{2 \pi} \left( \left| f(z_0) \right| - \left| f\left( z_0 + \rho e^{i t} \right) \right| \right) \dif t
+	\end{align*}
+	Therefore,
+	\begin{align*}
+		\left| f(z_0) \right| - \left| f\left( z_0 - \rho e^{i t} \right) \right| & \ge 0
+	\end{align*}
+	Therefore, as the integral this non-negative expression is zero, the expression must be zero.
+	Hence,
+	\begin{align*}
+		\left| f(z_0) \right| & = \left| f\left( z_0 + \rho e^{i t} \right) \right|
+	\end{align*}
+	Similarly, by \nameref{Cauchy-Riemann_Equations}, if $\forall z \in D_{z_0,\varepsilon}$,
+	\begin{align*}
+		\left| f(z_0) \right| & = \left| f(z) \right|
+	\end{align*}
+	then
+	\begin{align*}
+		f(z_0) & = f(z)
+	\end{align*}
+\end{proof}
+
+\begin{theorem}[Maximum Modulus Principle]
+	Let $f$ be analytic in $D$ and continuous on $\partial D$, and non-constant, then $f$ has no local maximum in $D$, and the global maximum in $\overline{D}$, i.e. the closer of $D$, must be on $\partial D$.
+	\label{thm:Maximum_Modulus_Principle}
+\end{theorem}
+
+\begin{question}
+	Find the maximum of
+	\begin{align*}
+		f(z) & = e^z
+	\end{align*}
+	in $\left\{ z : |z| \le 3 \right\}$.
+\end{question}
+
+\begin{solution}
+	$f(z)$ is entire and hence analytic in $D_{0,3}$.
+	Also, it is non-constant.
+	Hence, by \nameref{thm:Maximum_Modulus_Principle}, the global maximum must be on $\left\{ z : |z| < 3 \right\}$.\\
+	Let
+	\begin{align*}
+		\gamma(t) & = 3 e^{i t}
+	\end{align*}
+	where $0 \le t \le 2 \pi$.\\
+	Therefore, $\forall z \in \partial D$,
+	\begin{align*}
+		\left| e^z \right| & = \left| e^{3 e^{i t}} \right|                              \\
+                                   & = \left| e^{3 (\cos t + i \sin t)} \right|                  \\
+                                   & = \left| e^{3 \cos t} \right| \left| e^{3 i \sin t} \right| \\
+                                   & = e^{3 \cos t}                                              \\
+                                   & \le e^3
+	\end{align*}
+	Therefore, $z = 3$ is the global maximum.
+\end{solution}
+
+\begin{theorem}[Minimum Modulus Principle]
+	If $f$ is analytic in $D$, continuous on $\partial D$ such that $\forall z \in D$, $f(z) \neq 0$, then show that $f$ has a global minimum in $\partial D$.
+	\label{thm:Minimum_Modulus_Principle}
+\end{theorem}
+
+\begin{proof}
+	As $f(z) \neq 0$, let
+	\begin{align*}
+		g(z) & = \frac{1}{f(z)}
+	\end{align*}
+	Therefore, by \nameref{thm:Maximum_Modulus_Principle}, $g(z)$ has a global maximum in $\partial D$, which corresponds to the global minimum of $f(z)$.
+\end{proof}
+
+\begin{question}
+	Let $D$ be a bounded domain and $f$ be a non-constant, analytic function in $\overline{D}$, the closer of $D$, such that $\forall z \in \partial D$,
+	\begin{align*}
+		\left| f(z) \right| & = 1
+	\end{align*}
+	Prove that $\exists z_0 \in D$, such that
+	\begin{align*}
+		f(z_0) & = 0
+	\end{align*}
+\end{question}
+
+\begin{solution}
+	By \nameref{thm:Maximum_Modulus_Principle}, $\forall z \in D$,
+	\begin{align*}
+		\left| f(z) \right| & \le 1
+	\end{align*}
+	If possible, $\forall z \in D$, let
+	\begin{align*}
+		f(z) & \neq 0
+	\end{align*}
+	Therefore, by \nameref{thm:Minimum_Modulus_Principle},
+	\begin{align*}
+		\left| f(z) \right| & \ge 1
+	\end{align*}
+	Therefore,
+	\begin{align*}
+		\left| f(z) \right| & = 1
+	\end{align*}
+	Therefore, by \nameref{Cauchy-Riemann_Equations}, $f$ is constant.\\
+	This contradicts that $f$ is non-constant.
+	Therefore, $\exists z_0 \in D$, such that
+	\begin{align*}
+		f(z_0) & = 0
+	\end{align*}
+\end{solution}
+
+\begin{question}
+	Let $f$ be analytic on
+	\begin{align*}
+		D & = \left\{ z : |z| < 1 \right\}
+	\end{align*}a
+	and on $\partial D$.\\
+	Assuming $\forall z \in D$,
+	\begin{align*}
+		\left| f(z) \right| & \le \left| f\left( z^2 \right) \right|
+	\end{align*}
+	show that $f$ is constant.
+\end{question}
+
+\begin{solution}
+	Let $0 < r < 1$.
+	Let
+	\begin{align*}
+		D_r & = \left\{ z : |z| \le r \right\}
+	\end{align*}
+	Therefore,
+	\begin{align*}
+		D_{r^2} & = \left\{ z : |z| \le r^2 \right\}
+	\end{align*}
+	Therefore, as $0 < r < 1$,
+	\begin{align*}
+		D_{r^2} & \subset D_r
+	\end{align*}
+	As $\left| f(z) \right| \le \left| f\left( z^2 \right) \right|$, by \nameref{thm:Maximum_Modulus_Principle},
+	\begin{align*}
+		\max\limits_{D_r}\left| f(z) \right| &\le \max\limits_{D_{r^2}}\left| f(z) \right|
+	\end{align*}
+	As $D_{r^2} \subset D_r$,
+	\begin{align*}
+		\max\limits_{D_{r^2}}\left| f(z) \right| & \le \max\limits_{D_r}\left| f(z) \right|
+	\end{align*}
+	Therefore,
+	\begin{align*}
+		\max\limits_{D_r}\left| f(z) \right| & = \max\limits_{D_{r^2}}\left| f(z) \right|
+	\end{align*}
+	Therefore, the maximum $\left| f(z) \right|$ on $D_r$ is at a point in the interior of $D_r$.
+	Therefore, by \nameref{thm:Maximum_Modulus_Principle}, $f$ is constant on $D_r$.
+	Therefore, as $0 < r < 1$, $f$ is constant on $D$.
+\end{solution}
+
 \end{document}
