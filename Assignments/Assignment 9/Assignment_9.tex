@@ -1,0 +1,203 @@
+\documentclass[fleqn, a4paper, 11pt, oneside]{amsart}
+%\usepackage[top = 2cm, bottom = 1cm, left = 1cm, right = 1cm]{geometry}
+\usepackage{exsheets, tasks}
+\usepackage{amsmath, amssymb, amsthm} %standard AMS packages
+\usepackage{marginnote} %marginnotes
+\usepackage{gensymb} %miscellaneous symbols
+\usepackage{commath} %differential symbols
+\usepackage{xcolor} %colours
+\usepackage{cancel} %cancelling terms
+\usepackage[free-standing-units, space-before-unit]{siunitx} %formatting units
+\usepackage{tikz, pgfplots} %diagrams
+\usetikzlibrary{calc, hobby, patterns, intersections, decorations.markings}
+\usepackage{graphicx} %inserting graphics
+\usepackage{hyperref} %hyperlinks
+\usepackage{datetime} %date and time
+\usepackage{ulem} %underline for \emph{}
+\usepackage{xfrac} %inline fractions
+\usepackage{enumerate,enumitem} %numbered lists
+\usepackage{float} %inserting floats
+\usepackage{circuitikz}[american voltages, american currents] %circuit diagrams
+
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}} %adds numbers to specific equations in non-numbered list of equations
+
+\newcommand{\AxisRotator}[1][rotate=0]{
+	\tikz [x=0.25cm,y=0.60cm,line width=.2ex,-stealth,#1] \draw (0,0) arc (-150:150:1 and 1);%
+} %rotation symbols on axes
+
+\theoremstyle{definition}
+\newtheorem{example}{Example}
+\newtheorem{definition}{Definition}
+
+\theoremstyle{theorem}
+\newtheorem{theorem}{Theorem}
+
+\renewcommand{\Re}{\mathrm{Re}}
+\renewcommand{\Im}{\mathrm{Im}}
+
+\DeclareMathOperator{\Arg}{Arg}
+
+\DeclareMathOperator{\Int}{Int}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\boundary}{\partial}
+
+\DeclareMathOperator{\Log}{Log}
+\DeclareMathOperator{\pv}{pv}
+
+\DeclareMathOperator{\length}{length}
+
+\makeatletter
+\@addtoreset{section}{part} %resets section numbers in new part
+\makeatother
+
+\renewcommand{\thesubsection}{(\arabic{subsection})}
+\renewcommand{\thesection}{(\arabic{section})}
+
+%section headings on left
+\makeatletter
+\def\specialsection{\@startsection{section}{1}%
+	\z@{\linespacing\@plus\linespacing}{.5\linespacing}%
+	%  {\normalfont\centering}}% DELETED
+	{\normalfont}}% NEW
+\def\section{\@startsection{section}{1}%
+	\z@{.7\linespacing\@plus\linespacing}{.5\linespacing}%
+	%  {\normalfont\scshape\centering}}% DELETED
+	{\normalfont\scshape}}% NEW
+\makeatother
+
+%forces newline after subsection
+\makeatletter
+\def\subsection{\@startsection{subsection}{3}%
+	\z@{.5\linespacing\@plus.7\linespacing}{.1\linespacing}%
+	{\normalfont\itshape}}
+\makeatother
+
+\settasks{counter-format = tsk[1].}
+
+\SetupExSheets{solution/print = true}
+
+%opening
+\title{Complex Functions : Assignment 9}
+\author
+{
+	Aakash Jog\\
+	ID : 989323563
+}
+\date{\formatdate{30}{12}{2015}}
+
+\begin{document}
+
+\tikzset{->-/.style={decoration={
+  markings,
+  mark=at position #1 with {\arrow{>}}},postaction={decorate}}}
+
+\maketitle
+%\setlength{\mathindent}{0pt}
+
+\setcounter{question}{2}
+\begin{question}
+	In this question $f$ is an entire function.
+	You need to prove that under the following conditions, for each condition separately, it must be constant.
+	\begin{enumerate}
+		\item For every $z \in \mathbb{C}$, $\Re(f) \ge 0$.
+		\item For every $z \in \mathbb{C}$, $\left| f(z) \right| \neq 1$.
+		\item For every $z \in \mathbb{C}$, $f(z) \notin [0,1]$.
+	\end{enumerate}
+\end{question}
+
+\begin{solution}
+	\begin{enumerate}[leftmargin=*]
+		\item
+			\begin{align*}
+				\Re(f(z)) &\ge 0\\
+				\therefore \Re(f(z) + 1) &\ge 1\\
+				\therefore \left| f(z) + 1 \right| &\ge 1\\
+				\therefore 1 &\ge \frac{1}{\left| f(z) + 1 \right|}
+			\end{align*}
+			Therefore, as $\frac{1}{f(z) + 1}$ is entire, and is bounded by $1$, by Liouville's theorem, it is constant.
+			Hence, $f(z)$ is also constant.
+		\item
+		\item
+			Let
+			\begin{align*}
+				g(z) &= \frac{1}{f(z)}
+			\end{align*}
+			Therefore, $g(z)$ is entire, and bounded by $1$.
+			Therefore, by Liouville's theorem, $g(z)$ is constant.
+			Hence, $f(z)$ is constant.
+	\end{enumerate}
+\end{solution}
+
+\setcounter{question}{3}
+\begin{question}
+	Calculate $\displaystyle \int\limits_{0}^{2 \pi} \frac{\dif t}{a \cos t + b \sin t + c}$, where $a$, $b$, $c$ satisfy $\sqrt{a^2 + b^2} = 1 < c$.
+\end{question}
+
+\begin{solution}
+	Let
+	\begin{align*}
+		a &= \cos \alpha\\
+		b &= \sin \alpha
+	\end{align*}
+	Therefore,
+	\begin{align*}
+		a \cos t + b \sin t &= \cos \alpha \cos t + \sin \alpha \sin t\\
+		&= \cos(\alpha - t)
+	\end{align*}
+	Therefore,
+	\begin{align*}
+		\int\limits_{0}^{2 \pi} \frac{\dif t}{\cos(\alpha - t) + c} &= \int\limits_{0}^{2 \pi} \frac{\dif t}{\frac{e^{i (\alpha - t)} + e^{i (t - \alpha)}}{2} + c}
+	\end{align*}
+	Let
+	\begin{align*}
+		z &= i (\alpha - t)\\
+		\therefore \dif z &= -i \dif t\\
+		\therefore \dif t &= \frac{\dif z}{-i}\\
+		&= i \dif z
+	\end{align*}
+	Therefore,
+	\begin{align*}
+		\int\limits_{0}^{2 \pi} \frac{\dif t}{\cos(\alpha - t) + c} &= \int\limits_{i \alpha}^{i \alpha - 2 \pi i} \frac{i \dif z}{\frac{e^{i z} + e^{-i z}}{2} + c}\\
+		&= \int\limits_{i \alpha}^{i \alpha - 2 \pi i} \frac{2 i \dif z}{e^{i z} + e^{-i z} + 2 c}\\
+		&= \left. \frac{2 \tan ^{-1}\left( \frac{c + e^{i z}}{\sqrt{1 - c^2}}\right)}{\sqrt{1 - c^2}} \right|_{i \alpha}^{i \alpha - 2 \pi i}\\
+		&= \frac{2 \tan^{-1} \left( \frac{c + e^{i \alpha} e^{-2 \pi i}}{\sqrt{1 - c^2}} \right)}{\sqrt{1 - c^2}} - \frac{2 \tan^{-1} \left( \frac{c + e^{i \alpha}}{\sqrt{1 - c^2}} \right)}{\sqrt{1 - c^2}}\\
+		&= \frac{2 \tan^{-1} \left( \frac{c + e^{i \alpha} }{\sqrt{1 - c^2}} \right)}{\sqrt{1 - c^2}} - \frac{2 \tan^{-1} \left( \frac{c + e^{i \alpha}}{\sqrt{1 - c^2}} \right)}{\sqrt{1 - c^2}}\\
+		&= 0
+	\end{align*}
+\end{solution}
+
+\setcounter{question}{4}
+\begin{question}
+	If $p(z)$ is a polynomial of degree $n \ge 1$, and there exists $\alpha > 0$, such that
+	\begin{align*}
+		\left| p(z) \right| &\le \alpha |z|
+	\end{align*}
+	Then, there exists $c \in \mathbb{C}$, such that
+	\begin{align*}
+		p(z) &= c z
+	\end{align*}
+\end{question}
+
+\begin{solution}
+	\begin{align*}
+		\left| p(z) \right| &\le \alpha |z|
+	\end{align*}
+	Therefore,
+	\begin{align*}
+		\Re\left( p(z) \right) &\le \alpha \Re(z)\\
+	\end{align*}
+	Similarly,
+	\begin{align*}
+		\Im\left( p(z) \right) &\le \alpha \Im(z)\\
+	\end{align*}
+	Therefore,
+	\begin{align*}
+		p(z) &\le \Re(z) + i \Im(z)
+	\end{align*}
+	Therefore, $\exists c \in \mathbb{C}$, such that
+	\begin{align*}
+		p(z) &= c z
+	\end{align*}
+\end{solution}
+
+\end{document}
