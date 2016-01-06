@@ -1969,4 +1969,202 @@ Similarly, any other ray can be excluded in order to get a branch of $\log z$.\\
 	Therefore, as $0 < r < 1$, $f$ is constant on $D$.
 \end{solution}
 
+\newpage
+\part{Complex Sequences and Series}
+
+\section{Complex Series}
+
+\begin{definition}[Convergence of complex series]
+	The complex series $\sum z_n$ is said to converge to $L$, if and only if
+	\begin{align*}
+		\lim\limits_{N \to \infty} S_N & = \lim\limits_{N \to \infty} \sum\limits_{n = 0}^{N} z_n \\
+                                               & = L
+	\end{align*}
+\end{definition}
+
+\begin{theorem}
+	If
+	\begin{align*}
+		z_n & = x_n + i y_n
+	\end{align*}
+	then,
+	\begin{align*}
+		\sum\limits_{n = 0}^{\infty} z_n & = \sum\limits_{n = 0}^{\infty} x_n + i \sum\limits_{n = 0}^{\infty} y_n
+	\end{align*}
+\end{theorem}
+
+\begin{definition}[Absolute convergence of complex series]
+	The series $\sum\limits_{n = 1}^{\infty} z_n$ is said to converge absolutely, if
+	\begin{align*}
+		\sum\limits_{n = 1}^{\infty} |z_n| & < \infty
+	\end{align*}
+\end{definition}
+
+\section{Series of Complex Functions}
+
+\begin{theorem}
+	If a series converges converges absolutely, then it also converges.
+\end{theorem}
+
+\begin{definition}[Pointwise convergence of series of functions]
+	Let $f_n : \Omega \to \mathbb{C}$, where $\Omega \subseteq \mathbb{C}$.
+	The series $\sum\limits_{n = 0}^{\infty} f_n$ is said to converge pointwise to $f \in \Omega$, if $\forall z \in \Omega$,
+	\begin{align*}
+		\sum\limits_{n = 0}^{\infty} f_n(z) & = f(z)
+	\end{align*}
+\end{definition}
+
+\begin{definition}[Uniform convergence of series of functions]
+	Let $f_n : \Omega \to \mathbb{C}$, where $\Omega \subseteq \mathbb{C}$.
+	The series $\sum\limits_{n = 0}^{\infty} f_n$ is said to converge uniformly to $f \in \Omega$, if
+	\begin{align*}
+		\lim\limits_{N \to \infty} \sup\limits_{z \in \Omega} \left| S_N(z) - f(z) \right| & = 0
+	\end{align*}
+	where
+	\begin{align*}
+		S_N(z) & = \sum\limits_{n = 0}^{N} z_n
+	\end{align*}
+\end{definition}
+
+\subsection{Criteria for Uniform Convergence of Series of Functions}
+
+\begin{theorem}[Weierstrass M-test]
+	Let $f_n : \Omega \to \mathbb{C}$, where $\Omega \subseteq \mathbb{C}$.
+	Let $M_n \ge 0$ be a sequence which converges, such that, $\forall z \in \Omega$,
+	\begin{align*}
+		\left| f_n(z) \right| & \le M_n
+	\end{align*}
+	Then $f_n(z)$ converges uniformly in $\Omega$.
+	\label{thm:Weierstrass_M-test}
+\end{theorem}
+
+\section{Power Series}
+
+\begin{definition}[Power series]
+	A series of the form $\sum\limits_{n = 0}^{\infty} a_n (z - z_0)^n$ is called a power series.
+	All $a_n$ are called the coefficients, and $z_0$ is called the centre.
+\end{definition}
+
+\begin{theorem}
+	A power series
+	\begin{align*}
+		f(z) & = \sum\limits_{n = 0}^{\infty} a_n (z - z_0)^n
+	\end{align*}
+	converges in a disk $\left\{ z : |z - z_0| < R \right\}$ and diverges in $\left\{ z : |z - z_0| > R \right\}$, where
+	\begin{align*}
+		\frac{1}{R} & = \lim\limits_{n \to \infty} \sup|a_n|^{\frac{1}{n}}
+	\end{align*}
+	Also, the series converges uniformly in the set $\left\{ z : |z - z_0| < R' \right\}$, $\forall R'$, such that $0 < R' < R$.
+\end{theorem}
+
+\subsection{Integration of Power Series}
+
+\begin{theorem}
+	Let
+	\begin{align*}
+		f(z) & = \sum\limits_{n = 0}^{\infty} a_n (z - z_0)^n
+	\end{align*}
+	be convergent in $D_{z_0,R}$.\\
+	Let $\Gamma$ be a curve in $D_{z_0,R}$.\\
+	Let $g(z) : \Gamma \to \mathbb{C}$ be continuous in $\Gamma$.\\
+	Then,
+	\begin{align*}
+		\int\limits_{\Gamma} g(z) f(z) \dif z & = \sum\limits_{n = 0}^{\infty} a_n \int\limits_{\Gamma} g(z) (z - z_0)^n \dif z
+	\end{align*}
+\end{theorem}
+
+\begin{theorem}
+	Let
+	\begin{align*}
+		f(z) & = \sum\limits_{n = 0}^{\infty} a_n (z - z_0)^n
+	\end{align*}
+	be convergent in $D_{z_0,R}$.\\
+	Let $\Gamma$ be a curve in $D_{z_0,R}$.\\
+	If
+	\begin{align*}
+		\int\limits_{\Gamma} f(z) \dif z & = \sum\limits_{n = 0}^{\infty} a_n \int\limits_{\Gamma} (z - z_0)^n \dif z \\
+                                                 & = 0
+	\end{align*}
+	then $f$ is analytic in $D_{z_0,R}$.
+\end{theorem}
+
+\subsection{Differentiation of Power Series}
+
+\begin{theorem}
+	Let
+	\begin{align*}
+		f(z) & = \sum\limits_{n = 0}^{\infty} a_n (z - z_0)^n
+	\end{align*}
+	Then, in $D_{z_0,R}$,
+	\begin{align*}
+		f'(z) & = \sum\limits_{n = 1}^{\infty} n a_n (z - z_0)^{n - 1}
+	\end{align*}
+	where
+	\begin{align*}
+		\frac{1}{R} & = \lim\limits_{n \to \infty} \sup |a_n|^{\frac{1}{n}}
+	\end{align*}
+\end{theorem}
+
+\begin{theorem}
+	All functions of the form $\frac{1}{n^z}$, which converge uniformly, are analytic.
+\end{theorem}
+
+\begin{definition}[Riemann zeta function]
+	The Riemann zeta function is defined to be
+	\begin{align*}
+		\zeta(z) & = \sum\limits_{n = 1}^{\infty} \frac{1}{n^z}
+	\end{align*}
+\end{definition}
+
+\begin{question}
+	Show that $\zeta(z)$, the Riemann zeta function is analytic in $\left\{ z : \Re(z) > 1 \right\}$.
+\end{question}
+
+\begin{solution}
+	\begin{align*}
+		\zeta(z) & = \left| \sum\limits_{n = 1}^{\infty} \frac{1}{n^z} \right|           \\
+                         & \le \sum\limits_{n = 1}^{\infty} \left| \frac{1}{n^z} \right|         \\
+                         & \le \sum\limits_{n = 1}^{\infty} \left| \frac{1}{n^{x + i y}} \right| \\
+                         & \le \sum\limits_{n = 1}^{\infty} \left| \frac{1}{n^x n^{i y}} \right| \\
+                         & \le \sum\limits_{n = 1}^{\infty} \frac{1}{n^x}
+	\end{align*}
+	Let $\varepsilon > 0$.\\
+	Let
+	\begin{align*}
+		M_n & = \frac{1}{n^{1 + \varepsilon}}
+	\end{align*}
+	Therefore, for $z \in \left\{ z : \Re(z) > 1 + \varepsilon \right\}$, as $\left\{ M_n = \frac{1}{n^{1 + \varepsilon}} \right\}$ converges, and as
+	\begin{align*}
+		\frac{1}{n^z} & \le \frac{1}{n^{1 + \varepsilon}}
+	\end{align*}
+	by the \nameref{thm:Weierstrass_M-test}, $\zeta(z)$ converges in $\left\{ z : \Re(z) \ge 1 + \varepsilon \right\}$.
+	As this holds for all $\varepsilon > 0$, $\zeta(z)$ is also analytic in $\left\{ z : \Re(z) > 1 \right\}$.
+\end{solution}
+
+\section{Taylor Series for Complex Functions}
+
+\begin{theorem}[Taylor Series for Complex Functions]
+	Let $f$ be analytic in $D_{z_0,R}$.
+	Then,
+	\begin{align*}
+		f(z) & = \sum\limits_{n = 0}^{\infty} a_n (z - z_0)^n
+	\end{align*}
+	where
+	\begin{align*}
+		a_n & = \frac{f^{(n)}(z_0)}{n!} \\
+                    & = \frac{1}{2 \pi i} \int\limits_{\partial D_{z_0,R'}} \frac{f(z)}{(z - z_0)^{n + 1}} \dif z
+	\end{align*}
+	where $R' < R$.
+	\label{thm:Taylor_Series_for_Complex_Functions}
+\end{theorem}
+
+\begin{theorem}
+	Let $f$ and $g$ be analytic in a domain $D$.
+	If $\exists z_0 \in D$, such that
+	\begin{align*}
+		f^{(n)}(z_0) & = g^{(n)}(z_0)
+	\end{align*}
+	for all $n \ge 0$, then $f \equiv g$ in $D$.
+\end{theorem}
+
 \end{document}
