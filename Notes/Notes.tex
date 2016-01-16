@@ -83,6 +83,8 @@
 
 \DeclareMathOperator{\length}{length}
 
+\DeclareMathOperator{\Res}{Res}
+
 \makeatletter
 \@addtoreset{section}{part} %resets section numbers in new part
 \makeatother
@@ -2158,13 +2160,324 @@ Similarly, any other ray can be excluded in order to get a branch of $\log z$.\\
 	\label{thm:Taylor_Series_for_Complex_Functions}
 \end{theorem}
 
-\begin{theorem}
-	Let $f$ and $g$ be analytic in a domain $D$.
-	If $\exists z_0 \in D$, such that
+\begin{theorem}[First Uniqueness Theorem]
+	Let $f$ and $g$ be analytic functions in a domain $D$, such that for $z_0 \in D$, $\forall n \in \mathbb{N}$,
 	\begin{align*}
 		f^{(n)}(z_0) & = g^{(n)}(z_0)
 	\end{align*}
-	for all $n \ge 0$, then $f \equiv g$ in $D$.
+	Then,
+	\begin{align*}
+		f(z) & = g(z)
+	\end{align*}
+	in $D$.
+	\label{thm:First_Uniqueness_Theorem}
 \end{theorem}
+
+\begin{theorem}[Second Uniqueness Theorem]
+	Let $f$ and $g$ be analytic functions in a domain $D$.
+	Let there exist $\{z_n\}_{n = 1}^{\infty} \subset D$ which converges to $z_0 \in D$, such that $\forall n$,
+	\begin{align*}
+		f(z_n) & = g(z_n)
+	\end{align*}
+	Then,
+	\begin{align*}
+		f(z) & = g(z)
+	\end{align*}
+	in $D$.
+	\label{thm:Second_Uniqueness_Theorem}
+\end{theorem}
+
+\begin{proof}
+	As $f$ and $g$ are analytic in $D$, they are continuous in $D$.
+	Therefore,
+	\begin{align*}
+		\lim\limits_{n \to \infty} f(z_n) & = f(z_0) \\
+		\lim\limits_{n \to \infty} g(z_n) & = g(z_0)
+	\end{align*}
+	As $\forall n$,
+	\begin{align*}
+		f(z_n) & = g(z_n)
+	\end{align*}
+	Let
+	\begin{align*}
+		f(z_0) & = a_0 \\
+		g(z_0) & = a_0
+	\end{align*}
+	Therefore, let
+	\begin{align*}
+		\lim\limits_{n \to \infty} \frac{f(z_n) - f(z_0)}{z_n - z_0} & = f'(z_0) \\
+                                                                             & = a_1
+	\end{align*}
+	Therefore,
+	\begin{align*}
+		\lim\limits_{n \to \infty} \frac{g(z_n) - g(z_0)}{z_n - z_0} & = f'(z_0) \\
+                                                                             & = a_1
+	\end{align*}
+	Similarly, let
+	\begin{align*}
+		f''(z_0) & = \frac{f(z_n) - a_0 - a_1 (z_n - z_0)}{(z_n - z_0)^2} \\
+                         & = a_2                                                  \\
+		g''(z_0) & = \frac{g(z_n) - a_0 - a_1 (z_n - z_0)}{(z_n - z_0)^2} \\
+                         & = a_2
+	\end{align*}
+	Therefore,
+	\begin{align*}
+		\frac{f(z_n) - \sum\limits_{k = 0}^{N} a_k (z_n - z_0)^k}{(z_n - z_0)^{N + 1}} \\
+                                                                                                & = \frac{f^{(N + 1)}(z_0)}{(N + 1)!} \\
+                                                                                                & = a_{N + 1}                         \\
+		\frac{g(z_n) - \sum\limits_{k = 0}^{N} a_k (z_n - z_0)^k}{(z_n - z_0)^{N + 1}} \\
+                                                                                                & = \frac{g^{(N + 1)}(z_0)}{(N + 1)!} \\
+                                                                                                & = a_{N + 1}
+	\end{align*}
+	Therefore the Taylor series coefficients of $f$ and $g$ are equal.
+	Therefore,
+	\begin{align*}
+		f & = g
+	\end{align*}
+	in $D$.
+\end{proof}
+
+\begin{question}
+	Let $f(z)$ be analytic in $D_{0,1}$, such that $\forall n \in \mathbb{N} \ge 2$,
+	\begin{align*}
+		f\left( \frac{1}{n} \right) & = \frac{1}{n}
+	\end{align*}
+	Find $f(z)$.
+\end{question}
+
+\begin{solution}
+	$\forall n \in \mathbb{N} \ge 2$,
+	\begin{align*}
+		\left| \frac{1}{n} \right| & \le 1
+	\end{align*}
+	Therefore,
+	\begin{align*}
+		\left\{ \frac{1}{n} \right\} & \subset D_{0,1}
+	\end{align*}
+	The limit of the sequence is
+	\begin{align*}
+		\lim\limits_{n \to \infty} \frac{1}{n} & = 0
+	\end{align*}
+	Therefore, the sequences converges to $0$.\\
+	Let
+	\begin{align*}
+		g(z)                                   & = z \\
+		\therefore g\left( \frac{1}{n} \right) & = \frac{1}{n}
+	\end{align*}
+	Therefore, by the \nameref{thm:Second_Uniqueness_Theorem},
+	\begin{align*}
+		f(z) & = g(z) \\
+                     & = z
+	\end{align*}
+\end{solution}
+
+\section{Loren Series}
+
+\begin{theorem}[Loren Theorem]
+	Let $f$ be analytic in an annulus $r < |z - z_0| < R$.
+	Let $C$ be a simple closed curve around $z_0$, with positive orientation, inside the annulus.
+	Then, $f$ has a unique Loren series around $z_0$, which converges to $f$ in this ring, i.e.,
+	\begin{align*}
+		f(z) & = \sum\limits_{n = -\infty}^{\infty} c_n (z - z_0)^n \\
+                     & = \sum\limits_{n = 1}^{\infty} \frac{c_n}{(z - z_0)^n} + \sum\limits_{n = 0}^{\infty} c_n (z - z_0)^n
+	\end{align*}
+	where
+	\begin{align*}
+		c_n & = \frac{1}{2 \pi i} \int\limits_{C} \frac{f(z)}{(z - z_0)^{n + 1}} \dif z
+	\end{align*}
+	and
+	\begin{align*}
+		r           & = \lim\limits_{n \to \infty} \sup \sqrt[n]{|c_n|} \\
+		\frac{1}{R} & = \lim\limits_{n \to \infty} \sup \sqrt[n]{|c_n|}
+	\end{align*}
+	\label{thm:Loren_Theorem}
+\end{theorem}
+
+\begin{question}
+	\begin{align*}
+		f(z) & = -\frac{1}{(z - 1) (z - 2)}
+	\end{align*}
+	Find the Loren series of $f(z)$ around $z = 0$.
+\end{question}
+
+\begin{solution}
+	$f$ is analytic everywhere except at $z = 1$ and $z = 2$.\\
+	For $|z| < 1$, converting to partial fractions,
+	\begin{align*}
+		-\frac{1}{(z - 1) (z - 2)} & = \frac{1}{z - 1} + \frac{-1}{z - 2}                                                                        \\
+                                           & = -\frac{1}{1 - z} + \frac{1}{2} \frac{1}{1 - \frac{z}{2}}                                                  \\
+                                           & = -\sum\limits_{n = 0}^{\infty} z^n + \frac{1}{2} \sum\limits_{n = 0}^{\infty} \left( \frac{z}{2} \right)^2 \\
+                                           & = -\sum\limits_{n = 0}^{\infty} z^n + \sum\limits_{n = 0}^{\infty} \frac{z^n}{2^{n + 1}}                    \\
+                                           & = \sum\limits_{n = 0}^{\infty} \left( \frac{1}{2^{n + 1}} - 1 \right) z^n
+	\end{align*}
+	For $1 < |z| < 2$, converting to partial fractions,
+	\begin{align*}
+		-\frac{1}{(z - 1) (z - 2)} & = \frac{1}{z} \frac{1}{1 - \frac{1}{z}} + \frac{1}{2} \frac{1}{1 - \frac{z}{2}}                               \\
+                                           & = \frac{1}{z} \sum\limits_{n = 0}^{\infty} \frac{1}{z^n} + \sum\limits_{n = 0}^{\infty} \frac{z^n}{2^{n + 1}} \\
+                                           & = \sum\limits_{n = 1}^{\infty} \frac{1}{z^n} + \sum\limits_{n = 0}^{\infty} \frac{z^n}{2^{n + 1}}
+	\end{align*}
+	For $2 < |z|$, converting to partial fractions,
+	\begin{align*}
+		-\frac{1}{(z - 1) (z - 1)} & = \frac{1}{z - 1} + \frac{-1}{z - 2}                                                                                             \\
+                                           & = \frac{1}{z} \frac{1}{1 - \frac{1}{z}} - \frac{1}{z} \frac{1}{1 - \frac{2}{z}}                                                  \\
+                                           & = \frac{1}{z} \sum\limits_{n = 0}^{\infty} \frac{1}{z^n} - \frac{1}{z} \sum\limits_{n = 0}^{\infty} \left( \frac{2}{z} \right)^2 \\
+                                           & = \sum\limits_{n = 1}^{\infty} \frac{1}{z^n} - \sum\limits_{n = 1}^{\infty} \frac{2^{n - 1}}{z^n}                                \\
+                                           & = \sum\limits_{n = 1}^{\infty} \left( 1 - 2^{n - 1} \right) \frac{1}{z^n}
+	\end{align*}
+\end{solution}
+
+\section{Isolated Singularity Points}
+
+\begin{definition}[Isolated singular point]
+	A point $z_0$ is said to be an isolated singular point of $f(z)$ is $f$ is analytic in a perforated neighbourhood of $z_0$, i.e. if $\exists \varepsilon > 0$ such that $f$ is analytic in $D_{z_0,\varepsilon} \setminus \{z_0\}$.
+\end{definition}
+
+\begin{question}
+	Find all isolated singular points of
+	\begin{enumerate}
+		\item $f(z) = \frac{1}{z}$
+		\item $f(z) = \frac{\sin z}{z}$
+		\item $f(z) = \Log z$
+	\end{enumerate}
+\end{question}
+
+\begin{solution}
+	\begin{enumerate}[leftmargin=*]
+		\item
+			\begin{align*}
+				f(z) & = \frac{1}{z}
+			\end{align*}
+			Therefore, $\forall \varepsilon > 0$ around $z = 0$, $f$ is analytic.
+			Therefore, $z = 0$ is an isolated singular point for $f(z)$.
+		\item
+			\begin{align*}
+				f(z) & = \frac{\sin z}{z}
+			\end{align*}
+			Therefore, $\forall \varepsilon > 0$ around $z = 0$, $f$ is analytic.
+			Therefore, $z = 0$ is an isolated singular point for $f(z)$.
+		\item
+			\begin{align*}
+				f(z) & = \Log z
+			\end{align*}
+			As $\Log z$ is not defined on a ray in $\mathbb{C}$, $f$ is not analytic on $D_{0,\varepsilon}$.
+			Therefore, $z = 0$ is not an isolated singular point.
+	\end{enumerate}
+\end{solution}
+
+\subsection{Characterization of Isolated Singular Points}
+
+\begin{definition}[Characterization of isolated singular points]
+	Let $z_0$ be an isolated singular point of $f$.
+	Therefore, by \nameref{thm:Loren_Theorem},$f$ has a Loren series around $z_0$ with $r = 0$, which converges in the ring $0 < |z - z_0| < R$.
+	\begin{enumerate}
+		\item
+			$z_0$ is said to be a removable isolated singular point, if $\forall n < 0$, $c_n = 0$.
+		\item
+			$z_0$ is said to be a pole on order $N$, if $\forall n < -N$, $c_n = 0$, and $C_{-N} \neq 0$.
+		\item
+			$z_0$ is said to be a principle removable isolated singular point, if $\forall n < 0$, $c_n \neq 0$.
+	\end{enumerate}
+\end{definition}
+
+\begin{definition}[Residue]
+	Let $f$ have an isolated singular point at $z = 0$.
+	The residue of $f$ at $z_0$ is defined to be the coefficient $c_{-1}$, of $\frac{1}{z - z_0}$.\\
+	It is denoted as
+	\begin{align*}
+		c_{-1} & = \Res_{f}(z_0) \\
+                       & = \frac{1}{2 \pi i} \int\limits_{C} f(z) \dif z
+	\end{align*}
+	where $c_{-1}$ is a Loren coefficient of $f$.
+\end{definition}
+
+\begin{definition}
+	For any $z_0 \in \mathbb{C}$ such that $f(z_0) = 0$, the order of the zero is defined to be $n \in \mathbb{N}$, such that
+	\begin{align*}
+		f^{(n)} & \neq 0
+	\end{align*}
+	and
+	\begin{align*}
+		f^{(k)}(z_0) & = 0
+	\end{align*}
+	where $k = 0,\dots,n - 1$.\\
+	A pole of order $1$ is said to be a single pole.
+\end{definition}
+
+\begin{question}
+	Find the order of the zero at $z = 0$ for
+	\begin{enumerate}
+		\item $f(z) = z \sin z$
+		\item $f(z) = 1 - \cos z$
+	\end{enumerate}
+\end{question}
+
+\begin{solution}
+	\begin{enumerate}[leftmargin=*]
+		\item
+			\begin{align*}
+				f(z)            & = z \sin z \\
+				\therefore f(0) & = 0
+			\end{align*}
+			Therefore,
+			\begin{align*}
+				f'(z)            & = \sin z + z \cos z \\
+				\therefore f'(0) & = 0
+			\end{align*}
+			Therefore,
+			\begin{align*}
+				f''(z)            & = \cos z + \cos z - z \sin z \\
+				\therefore f''(0) & = 2                          \\
+                                                  & \neq 0
+			\end{align*}
+			Therefore, the order of the zero at $z = 0$ is $2$.
+		\item
+			\begin{align*}
+				f(z)            & = 1 - \cos z \\
+				\therefore f(0) & = 0
+			\end{align*}
+			Therefore,
+			\begin{align*}
+				f'(z)            & = \sin z \\
+				\therefore f'(0) & = 0
+			\end{align*}
+			Therefore,
+			\begin{align*}
+				f''(z)            & = \cos z \\
+				\therefore f''(0) & = 1
+			\end{align*}
+			Therefore, the order of the zero at $z = 0$ is $2$.
+	\end{enumerate}
+\end{solution}
+
+\begin{question}
+	Let $f(z)$ and $g(z)$ be functions analytic at $z_0$.
+	Let $z_0$ be a zero of order $m$ for $f(z)$, and $n$ for $g(z)$.
+	Then, prove that $z_0$ is a zero of order $m + n$ for the function $f(z) g(z)$.
+\end{question}
+
+\begin{solution}
+	As $z_0$ is a zero of order $m$ with respect to $f(z)$,
+	\begin{align*}
+		f(z) & = (z - z_0)^m h_1(z)
+	\end{align*}
+	where $h_1(z)$ is an analytic function, such that
+	\begin{align*}
+		h_1(z_0) & \neq 0
+	\end{align*}
+	As $z_0$ is a zero of order $n$ with respect to $g(z)$,
+	\begin{align*}
+		g(z) & = (z - z_0)^n h_2(z)
+	\end{align*}
+	where $h_2(z)$ is an analytic function, such that
+	\begin{align*}
+		h_2(z_0) & \neq 0
+	\end{align*}
+	Therefore,
+	\begin{align*}
+		f(z) g(z) & = (z - z_0)^m h_1(z) (z - z_0)^n h_2(z) \\
+                          & = (z - z_0)^{m + n} h_1(z) h_2(z)
+	\end{align*}
+	Therefore, $z_0$ is a zero of order $m + n$ for the function $f(z) g(z)$.
+\end{solution}
 
 \end{document}
