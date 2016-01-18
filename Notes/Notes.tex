@@ -2271,12 +2271,12 @@ Similarly, any other ray can be excluded in order to get a branch of $\log z$.\\
 	\end{align*}
 \end{solution}
 
-\section{Loren Series}
+\section{Laurent Series}
 
-\begin{theorem}[Loren Theorem]
+\begin{theorem}[Laurent Theorem]
 	Let $f$ be analytic in an annulus $r < |z - z_0| < R$.
 	Let $C$ be a simple closed curve around $z_0$, with positive orientation, inside the annulus.
-	Then, $f$ has a unique Loren series around $z_0$, which converges to $f$ in this ring, i.e.,
+	Then, $f$ has a unique Laurent series around $z_0$, which converges to $f$ in this ring, i.e.,
 	\begin{align*}
 		f(z) & = \sum\limits_{n = -\infty}^{\infty} c_n (z - z_0)^n \\
                      & = \sum\limits_{n = 1}^{\infty} \frac{c_n}{(z - z_0)^n} + \sum\limits_{n = 0}^{\infty} c_n (z - z_0)^n
@@ -2290,14 +2290,14 @@ Similarly, any other ray can be excluded in order to get a branch of $\log z$.\\
 		r           & = \lim\limits_{n \to \infty} \sup \sqrt[n]{|c_n|} \\
 		\frac{1}{R} & = \lim\limits_{n \to \infty} \sup \sqrt[n]{|c_n|}
 	\end{align*}
-	\label{thm:Loren_Theorem}
+	\label{thm:Laurent_Theorem}
 \end{theorem}
 
 \begin{question}
 	\begin{align*}
 		f(z) & = -\frac{1}{(z - 1) (z - 2)}
 	\end{align*}
-	Find the Loren series of $f(z)$ around $z = 0$.
+	Find the Laurent series of $f(z)$ around $z = 0$.
 \end{question}
 
 \begin{solution}
@@ -2368,7 +2368,7 @@ Similarly, any other ray can be excluded in order to get a branch of $\log z$.\\
 
 \begin{definition}[Characterization of isolated singular points]
 	Let $z_0$ be an isolated singular point of $f$.
-	Therefore, by \nameref{thm:Loren_Theorem},$f$ has a Loren series around $z_0$ with $r = 0$, which converges in the ring $0 < |z - z_0| < R$.
+	Therefore, by \nameref{thm:Laurent_Theorem}, $f$ has a Laurent series around $z_0$ with $r = 0$, which converges in the ring $0 < |z - z_0| < R$.
 	\begin{enumerate}
 		\item
 			$z_0$ is said to be a removable isolated singular point, if $\forall n < 0$, $c_n = 0$.
@@ -2387,7 +2387,7 @@ Similarly, any other ray can be excluded in order to get a branch of $\log z$.\\
 		c_{-1} & = \Res_{f}(z_0) \\
                        & = \frac{1}{2 \pi i} \int\limits_{C} f(z) \dif z
 	\end{align*}
-	where $c_{-1}$ is a Loren coefficient of $f$.
+	where $c_{-1}$ is a Laurent coefficient of $f$.
 \end{definition}
 
 \begin{definition}
